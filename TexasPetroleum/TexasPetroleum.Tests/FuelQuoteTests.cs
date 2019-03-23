@@ -23,5 +23,18 @@ namespace TexasPetroleum.Tests
             //Assert
             Assert.Equal(expectedValue, actualValue);
         }
+
+        [Fact]
+        public void GallonsRequested_ShouldBeGreaterThanZero()
+        {
+            //Arrange
+            FuelQuote newQuote = new FuelQuote();
+            newQuote.GallonsRequested = 5;
+            double expectedValue = 5;
+            //Act
+            double actualValue = newQuote.GallonsRequested;
+            //Assert
+            Assert.Equal(expectedValue, actualValue);
+        }
     }
 }
