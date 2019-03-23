@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TexasPetroleum;
+using TexasPetroleum.Models;
 using Xunit;
 
 namespace TexasPetroleum.Tests
@@ -14,10 +14,14 @@ namespace TexasPetroleum.Tests
         public void TotalPrice_ShouldCalculate()
         {
             //Arrange
-            double expectedValue = 10;
+            FuelQuote newQuote = new FuelQuote();
+            newQuote.SuggestedPrice = 2;
+            newQuote.GallonsRequested = 10;
+            double expectedValue = 20;
             //Act
-            //double actualValue = ??? how to do this for web
+            double actualValue = newQuote.TotalPrice;
             //Assert
+            Assert.Equal(expectedValue, actualValue);
         }
     }
 }
