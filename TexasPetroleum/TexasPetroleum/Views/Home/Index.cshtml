@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@* Big header *@
+<section class="homepg-jumbotron jumbotron text-white bg-gradient-primary">
+    <div class="container">
+        <h1 class="display-4">Texas Petroleum</h1>
+        <p>Help us help you with the best rate on the same fuel our competitors sell at an inflated price.</p>
+    </div>
+</section>
+
+@* Our grid system *@
+<section>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-4 col-sm-6">
+                <div class="card">
+                    <img src="../Media/fuel-truck.jpg" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Shipping</h5>
+                        <p class="card-text">We ship to you! Register to become a client today.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-sm-6">
+                <div class="card">
+                    <img src="../Media/gas-station.jpg" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Rate Prediction Tool</h5>
+                        <p class="card-text">Our clients have access to a fuel-rate prediction tool to help you to make better financial decisions for your establishment.</p>
+                        @Html.ActionLink("Register Now", "Register", "Account", null, new { id = "registerLink", @class = "btn btn-sm btn-outline-success" })
+                        @Html.ActionLink("Log in", "Login", "Account", null, new { id = "loginlink", @class = "btn btn-sm btn-outline-success" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-sm-6">
+                <div class="card">
+                    <img src="../Media/jet-fuel.jpg" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Aviation Fuel Available</h5>
+                        <p class="card-text">On top of the various octane levels offered for automotive gas stations, we also offer 100-octane aviation fuel</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

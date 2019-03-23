@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "UserHub";
+}
+
+
+<h1 class="justify-content-center">Client Hub</h1>
+
+
+@* Our grid system *@
+<section>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-4">
+                <div class="card">
+                    <img src="../Media/silhouette.jpg" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title">Profile Management</h3>
+                        <p class="card-text">Manage your company's profile.</p>
+                        @Html.ActionLink("Manage Profile", "Edit", "Profile", null, new { @class = "btn btn-lg btn-outline-success" })
+                    </div>
+                </div>
+            </div>
+        
+        
+            <div class="col-xl-4">
+                <div class="card h-100">
+                    <img src="../Media/handing-folder.jpg" alt="" class="card-img-top h-25">
+                    <div class="card-body">
+                        <h3 class="card-title">Online Quote</h3>
+                        <p class="card-text">Fill out an online fuel quote form..</p>
+                        @Html.ActionLink("Fill Out Online Form", "Index", "Quote", null, new { @class = "btn btn-lg btn-outline-success" })
+                    </div>
+                </div>
+            </div>
+        
+        
+            <div class="col-xl-4">
+                <div class="card">
+                    <img src="../Media/files.jpg" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title">Quote History</h3>
+                        <p class="card-text">A record of all of your previous quotes.</p>
+                        @Html.ActionLink("View Quote History", "QuoteHistory", "Quote", null, new { @class = "btn btn-lg btn-outline-success" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

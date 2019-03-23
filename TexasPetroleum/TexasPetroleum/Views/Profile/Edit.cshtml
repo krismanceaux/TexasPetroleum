@@ -1,0 +1,63 @@
+﻿@using FuelRatePredictor.Enums
+
+@model FuelRatePredictor.Models.ProfileViewModel
+
+@{
+        ViewBag.Title = "Edit";
+}
+
+<h2>Profile Management</h2>
+
+<div class="container">
+    <form action="Edit" method="post">
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(m => m.Name)
+            </div>
+            <div class="row">
+                @Html.EditorFor(m => m.Name)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(m => m.Address.AddressLine1)
+            </div>
+            <div class="row">
+                @Html.EditorFor(m => m.Address.AddressLine1)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(m => m.Address.AddressLine2)
+            </div>
+            <div class="row">
+                @Html.EditorFor(m => m.Address.AddressLine2)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(m => m.Address.City)
+            </div>
+            <div class="row">
+                @Html.EditorFor(m => m.Address.City)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputState">State</label>
+            @Html.DropDownListFor(m => m.StateOption, new SelectList(Enum.GetValues(typeof(DisplayEnums.StateOptions))), "Select Option", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(m => m.Address.ZipCode)
+            </div>
+            <div class="row">
+                @Html.EditorFor(m => m.Address.ZipCode)
+            </div>
+        </div>
+        @using (Html.BeginForm("Edit", "ProfileController", FormMethod.Post))
+        {
+            <button>Save</button>
+        }
+    </form>
+</div>
+

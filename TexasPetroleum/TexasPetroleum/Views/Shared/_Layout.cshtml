@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Texas Petroleum</title>
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt:400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a href="@Url.Action("Index", "Home")" class="navbar-brand"><i class="fas fa-gas-pump"></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li>
+                    <div class="btn-group">
+
+                        @Html.ActionLink("Client Hub", "UserHub", "Home", null, new { @class = "btn btn-secondary btn-sm", @type = "button" })
+                        <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            @Html.ActionLink("Profile", "Index", "Profile", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Quote Form", "Index", "Quote", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Quote History", "QuoteHistory", "Quote", null, new { @class = "dropdown-item" })
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
+                </li>
+
+            </ul>
+            
+            @Html.Partial("_LoginPartial")
+        </div>
+    </nav>
+
+    
+    <div class="body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Texas Petroleum</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

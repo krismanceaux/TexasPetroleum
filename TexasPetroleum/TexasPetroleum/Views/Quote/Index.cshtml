@@ -1,0 +1,53 @@
+﻿@model FuelRatePredictor.Models.FuelQuote
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Quote Form</h2>
+
+<div class="container">
+
+    @using (Html.BeginForm("Create", "QuoteController"))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.GallonsRequested)
+            @Html.TextBoxFor(m => m.GallonsRequested, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.DeliveryAddress.AddressLine1)
+            @Html.TextBoxFor(m => m.DeliveryAddress.AddressLine1, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.DeliveryAddress.AddressLine2)
+            @Html.TextBoxFor(m => m.DeliveryAddress.AddressLine2, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.DeliveryAddress.City)
+            @Html.TextBoxFor(m => m.DeliveryAddress.City, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.DeliveryAddress.State)
+            @Html.TextBoxFor(m => m.DeliveryAddress.State, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.DeliveryAddress.ZipCode)
+            @Html.TextBoxFor(m => m.DeliveryAddress.ZipCode, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.DeliveryDate)
+            @Html.TextBoxFor(m => m.DeliveryDate, new { @class = "form-control", @type = "date" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.SuggestedPrice)
+            @Html.TextBoxFor(m => m.SuggestedPrice, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.TotalPrice)
+            @Html.TextBoxFor(m => m.TotalPrice, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-sm btn-outline-success">Submit</button>
+        </div>
+        }
+
+    </div>
