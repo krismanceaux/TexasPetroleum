@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 ﻿using TexasPetroleum.DAL;
 using TexasPetroleum.Models;
 using System;
+=======
+﻿using System;
+>>>>>>> 210021c846258e352b59940db0ca1295f3469d60
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -31,12 +35,6 @@ namespace FuelRatePredictor.Controllers
 
       
         public ActionResult SubmitSuccess()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Create(FuelQuote model)
         {
             return View();
         }
