@@ -12,17 +12,21 @@ namespace TexasPetroleum.ViewModels
     {
         [Display(Name = "Name")]
         [Required(ErrorMessage ="Name is required")]
+        [StringLength(50,ErrorMessage = "Must be less than 50 characters")]
         public string Name { get; set; }
 
         [Display(Name = "Address Line 1")]
         [Required(ErrorMessage ="Street address is required")]
+        [StringLength(100, ErrorMessage = "Must be less than 100 characters")]
         public string AddressLine1 { get; set; }
 
         [Display(Name = "Address Line 2")]
+        [StringLength(100, ErrorMessage = "Must be less than 100 characters")]
         public string AddressLine2 { get; set; }
 
         [Display(Name = "City")]
         [Required(ErrorMessage ="City is required")]
+        [StringLength(100, ErrorMessage = "Must be less than 100 characters")]
         public string City { get; set; }
 
         [Display(Name = "State")]
@@ -31,6 +35,7 @@ namespace TexasPetroleum.ViewModels
 
         [Display(Name = "Zipcode")]
         [Required(ErrorMessage ="Zipcode is required")]
+        [StringLength(9, MinimumLength = 5, ErrorMessage = "Must be between 5 and 9 characters in length")]
         public string Zipcode { get; set; }
 
         public IEnumerable<SelectListItem> StateOptionsSelect { get; set; }
