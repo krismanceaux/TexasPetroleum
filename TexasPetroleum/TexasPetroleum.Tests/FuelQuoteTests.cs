@@ -15,9 +15,8 @@ namespace TexasPetroleum.Tests
         {
             //Arrange
             FuelQuote newQuote = new FuelQuote();
-            newQuote.SuggestedPrice = 2;
             newQuote.GallonsRequested = 10;
-            double expectedValue = 20;
+            double expectedValue = 25;
             //Act
             double actualValue = newQuote.TotalPrice;
             //Assert
@@ -35,6 +34,20 @@ namespace TexasPetroleum.Tests
             double actualValue = newQuote.GallonsRequested;
             //Assert
             Assert.Equal(expectedValue, actualValue);
+        }
+
+        [Fact]
+        public void suggestedPrice_ShouldbePresent()
+        {
+            //Arrange
+            FuelQuote newQuote = new FuelQuote();
+            bool expected = true;
+            //Act
+            bool actual = false;
+            if (newQuote.SuggestedPrice > 0)
+                actual = true;
+            //Assert
+            Assert.Equal(expected, actual);
         }
     }
 }

@@ -29,36 +29,32 @@ namespace FuelRatePredictor.Controllers
         [HttpPost]
         public ActionResult Edit(QuoteVM quote)
         {
-            if (ModelState.IsValid)
-            {
-                var context = new QuoteContext();
-                var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
+            
+            var context = new QuoteContext();
+            var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
 
-                Address address = new Address();
-                FuelQuote fuelQuote = new FuelQuote();
+            Address address = new Address();
+            FuelQuote fuelQuote = new FuelQuote();
 
-                address.AddressLine1 = quote.AddressLine1;
-                address.AddressLine2 = quote.AddressLine2;
-                address.City = quote.City;
-                address.State = quote.StateOption.ToString();
-                address.Zipcode = quote.Zipcode;
+            address.AddressLine1 = quote.AddressLine1;
+            address.AddressLine2 = quote.AddressLine2;
+            address.City = quote.City;
+            address.State = quote.StateOption.ToString();
+            address.Zipcode = quote.Zipcode;
 
-                fuelQuote.GallonsRequested = quote.GallonsRequested;
-                fuelQuote.TimeCreated = DateTime.Now;
-                fuelQuote.DeliveryAddress = address;
+            fuelQuote.GallonsRequested = quote.GallonsRequested;
+            fuelQuote.TimeCreated = DateTime.Now;
+            fuelQuote.DeliveryAddress = address;
 
-                client.FuelQuotes.Add(fuelQuote);
+            client.FuelQuotes.Add(fuelQuote);
 
-                //context.Quotes.Add(fuelQuote);
+            //context.Quotes.Add(fuelQuote);
 
-                context.SaveChanges();
+            context.SaveChanges();
 
-                return Redirect("/Home/UserHub");
-            }
-            else
-            {
-
-            }
+            return Redirect("/Home/UserHub");
+            
+         
             
         }
         
