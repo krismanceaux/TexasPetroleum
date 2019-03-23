@@ -19,13 +19,13 @@ namespace TexasPetroleum.Models
         [Key]
         public Guid QuoteId { get; set; }
 
-        public Address DeliveryAddress { get; set; }
-
         public DateTime DeliveryDate { get; set; }
+
+        public Address DeliveryAddress { get; set; }
 
         public DateTime TimeCreated { get; set; }
 
-        public double SuggestedPrice { get; set; }
+        public double SuggestedPrice { get; set; } = 2.5;
 
         //May have to change back to just get; set;
         public double GallonsRequested

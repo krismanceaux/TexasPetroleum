@@ -11,7 +11,7 @@ namespace TexasPetroleum.Models
         public Client()
         {
             ClientId = Guid.NewGuid();
-            Address = new Address();
+            Name = String.Empty;
             FuelQuotes = new List<FuelQuote>();
         }
 

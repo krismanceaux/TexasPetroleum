@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TexasPetroleum.DAL;
+using TexasPetroleum.Models;
 using TexasPetroleum.ViewModels;
+using static TexasPetroleum.Enums.DisplayEnums;
 
 namespace TexasPetroleum.Controllers
 {
@@ -16,59 +19,45 @@ namespace TexasPetroleum.Controllers
             return View();
         }
 
-        //I just commented this out for now/ change later?
-        //[HttpGet]
-        //public ActionResult Edit()
-        //{
-        //    //var context = new QuoteContext();
-        //    //var client = context.Clients.SingleOrDefault(x => x.ClientId == )
+        [HttpGet]
+        public ActionResult Edit()
+        {
+            var context = new QuoteContext();
+            var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
+            var address = client.Address == null ? new Address() : client.Address;
 
-        //    //// If no client data exists, create new client to pass to view
-        //    //if (currentUser.Client == null)
-        //    //{
-        //    //    currentUser.Client = new Client();
-        //    //}
+            ProfileVM vm = new ProfileVM()
+            {
+                Name = client.Name,
+                AddressLine1 = address.AddressLine1,
+                AddressLine2 = address.AddressLine2,
+                City = address.City,
+                StateOption = (StateOptions)Enum.Parse(typeof(StateOptions), address.State),
+                Zipcode = address.Zipcode
+            };
 
-        //    //ProfileViewModel vm = new ProfileViewModel()
-        //    //{
-        //    //    Name = currentUser.Client.Name,
-        //    //    Address = currentUser.Client.Address
-        //    //};
-
-        //    //return View();
-        //}
+            return View(vm);
+        }
 
         [HttpPost]
         public ActionResult Edit(ProfileVM model)
         {
 
-            //var context = new ApplicationDbContext();
-            //var currentUserID = System.Web.HttpContext.Current.User.Identity.GetUserId();
-            //var currentUser = context.Users.Single(x => x.Id == currentUserID);
-            //var client = currentUser.Client;
+            var context = new QuoteContext();
+            var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
+            var address = context.Addresses.Single(x => x.Id == client.ClientId);
 
-            //if (client == null)
-            //{
-            //    client = new Client();
-            //    client.ApplicationUser = currentUser;
-            //}
+            client.Name = model.Name;
+            address.AddressLine1 = model.AddressLine1;
+            address.AddressLine2 = model.AddressLine2;
+            address.City = model.City;
+            address.State = model.StateOption.ToString();
+            address.Zipcode = model.Zipcode;
 
-            //client.Name = model.Name;
-            //client.Address.AddressLine1 = model.Address.AddressLine1;
-            //client.Address.AddressLine2 = model.Address.AddressLine2;
-            //client.Address.City = model.Address.City;
+            client.Address = address;
+            context.SaveChanges();
 
-            //var stateStringVal = model.StateOption.ToString();
-
-            //client.Address.State = stateStringVal;
-            //client.Address.ZipCode = model.Address.ZipCode;
-
-            //context.Clients.Add(client);
-            //context.Users.Attach(client.ApplicationUser);
-
-            //context.SaveChanges();
-
-            return View();
+            return Redirect("/Home/UserHub");
         }
     }
 }
