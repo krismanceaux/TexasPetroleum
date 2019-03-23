@@ -134,6 +134,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903230721335_CreateClient.cs" />
+    <Compile Include="Migrations\201903230721335_CreateClient.Designer.cs">
+      <DependentUpon>201903230721335_CreateClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Client.cs" />
@@ -261,6 +266,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903230721335_CreateClient.resx">
+      <DependentUpon>201903230721335_CreateClient.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
