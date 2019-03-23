@@ -1,22 +1,28 @@
+<<<<<<< HEAD
+﻿using TexasPetroleum.DAL;
+using TexasPetroleum.Models;
+using System;
+=======
 ﻿using System;
+>>>>>>> 210021c846258e352b59940db0ca1295f3469d60
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TexasPetroleum.Models;
+using TexasPetroleum;
 
-namespace TexasPetroleum.Controllers
+namespace FuelRatePredictor.Controllers
 {
     public class QuoteController : Controller
     {
         // GET: Quote
-        [Authorize]
+        
         public ActionResult Index()
         {
             return View();
         }
 
-        [Authorize]
+        
         public ActionResult QuoteHistory()
         {
             QuoteContext dbContext = new QuoteContext();
@@ -27,7 +33,7 @@ namespace TexasPetroleum.Controllers
             return View(history);
         }
 
-        [Authorize]
+      
         public ActionResult SubmitSuccess()
         {
             return View();
