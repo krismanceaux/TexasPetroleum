@@ -29,8 +29,8 @@ namespace FuelRatePredictor.Controllers
         [HttpPost]
         public ActionResult Edit(QuoteVM quote)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 var context = new QuoteContext();
                 var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
 
@@ -54,11 +54,11 @@ namespace FuelRatePredictor.Controllers
                 context.SaveChanges();
 
                 return Redirect("/Home/UserHub");
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-            }
+            //}
             
         }
         
