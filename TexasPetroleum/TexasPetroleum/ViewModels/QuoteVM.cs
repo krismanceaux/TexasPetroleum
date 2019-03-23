@@ -38,6 +38,7 @@ namespace TexasPetroleum.ViewModels
 
         [Display(Name = "Gallons Requested")]
         [Required(ErrorMessage = "Gallons requested is required")]
+        [Range(0,Int32.MaxValue,ErrorMessage = "Must be greater than 0")]
         public double GallonsRequested { get; set; }
 
         [Display(Name = "Total Price")]

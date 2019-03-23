@@ -8,6 +8,9 @@ namespace TexasPetroleum.Models
 {
     public class FuelQuote
     {
+        //may have to delete
+        private double gallons = -1;
+
         public FuelQuote()
         {
             QuoteId = Guid.NewGuid();
@@ -24,7 +27,23 @@ namespace TexasPetroleum.Models
 
         public double SuggestedPrice { get; set; } = 2.5;
 
-        public double GallonsRequested { get; set; }
+        //May have to change back to just get; set;
+        public double GallonsRequested
+        {
+            get
+            {
+                return gallons;
+            }
+                
+            set
+            {
+                if (value > 0)
+                {
+                    gallons = value;
+                }
+                
+            }
+        }
 
         public double TotalPrice
         {
