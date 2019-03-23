@@ -10,13 +10,13 @@ namespace TexasPetroleum.Controllers
     public class ProfileController : Controller
     {
         // GET: Profile
-        
+
         public ActionResult Index()
         {
             return View();
         }
 
-        
+        [HttpGet]
         public ActionResult Edit()
         {
             //var context = new QuoteContext();
@@ -34,7 +34,7 @@ namespace TexasPetroleum.Controllers
             //    Address = currentUser.Client.Address
             //};
 
-            return View();
+            //return View();
         }
 
         [HttpPost]

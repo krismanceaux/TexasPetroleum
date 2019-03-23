@@ -1,4 +1,4 @@
-﻿@model TexasPetroleum.AccountVM
+﻿@model TexasPetroleum.ViewModels.LoginVM
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,7 +8,7 @@
 @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     <h4>Login into an existing account.</h4>
-    @Html.ValidationSummary("", new {  @class = "text-danger" })
+    @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="row">
         <div class="col-md-8">
             <section id="loginForm">
@@ -36,6 +36,6 @@
         </div>
     </div>
 }
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

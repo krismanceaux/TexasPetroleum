@@ -9,7 +9,7 @@ namespace TexasPetroleum
 {
     public class QuoteContext : DbContext
     {
-        public QuoteContext() : base("QuoteContext")
+        public QuoteContext() : base("name=sdSingh")
         {
 
         }
@@ -22,6 +22,18 @@ namespace TexasPetroleum
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Client>().HasKey(x => x.ClientId);
+
+            modelBuilder.Entity<Client>()
+                .HasRequired(m => m.Address)
+                .WithRequiredPrincipal(x => x.Client)
+                .WillCascadeOnDelete();
+
+            modelBuilder.Entity<Client>()
+                .HasMany(x => x.FuelQuotes)
+                .WithRequired(x => x.Client)
+                .WillCascadeOnDelete();
+
             base.OnModelCreating(modelBuilder);
         }
     }

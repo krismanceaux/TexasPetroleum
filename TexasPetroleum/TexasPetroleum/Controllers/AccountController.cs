@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TexasPetroleum.Models;
+using TexasPetroleum.ViewModels;
 
 namespace TexasPetroleum.Controllers
 {
@@ -15,23 +17,21 @@ namespace TexasPetroleum.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(AccountVM user)
+        public ActionResult Login(LoginVM user)
         {
             if (ModelState.IsValid)
             {
                 var context = new QuoteContext();
+                var client = context.Clients.First();
 
-                //Temp while DB is down
-                //return Redirect("/Home/UserHub");
-
-                if (false)   //context.Clients.Any(x => x.Username == user.Username && x.Password == user.Password)
+                if (context.Clients.Any(x => x.Username == user.Username && x.Password == user.Password))
                 {
-                    //redirect to UserHub
+                    // Redirect to UserHub
                     return Redirect("/Home/UserHub");
                 }
                 else
                 {
-                    // display error
+                    // Display error
                     ModelState.AddModelError(string.Empty, "Invalid Username or Password");
                     return View(user);
                 }
@@ -51,7 +51,7 @@ namespace TexasPetroleum.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(AccountVM user)
+        public ActionResult Register(RegistrationVM user)
         {
             if(ModelState.IsValid)
             {
@@ -65,6 +65,17 @@ namespace TexasPetroleum.Controllers
                     }
                     else
                     {
+                        var newClient = new Client();
+
+                        newClient.Username = user.Username;
+                        newClient.Password = user.Password;
+                        
+                        // Need to save correctly
+                        context.Addresses.Add(newClient.Address);   
+                        context.Clients.Add(newClient);
+
+                        context.SaveChanges();
+
                         return Redirect("/Home/Login");
                     }
                 }

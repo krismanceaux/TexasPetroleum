@@ -6,7 +6,7 @@ using TexasPetroleum.Models;
 
 namespace TexasPetroleum.DAL
 {
-    public class QuoteInitializer : System.Data.Entity.DropCreateDatabaseAlways<QuoteContext> // DropCreateDatabaseIfModelChanges<QuoteContext> CHANGE WHEN DONE TESTING
+    public class QuoteInitializer : System.Data.Entity.CreateDatabaseIfNotExists<QuoteContext> // DropCreateDatabaseIfModelChanges<QuoteContext> CHANGE WHEN DONE TESTING
     {
         protected override void Seed(QuoteContext context) 
         {

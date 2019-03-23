@@ -19,13 +19,12 @@ namespace TexasPetroleum.Models
         public Guid ClientId { get; set; }
 
         [Required]
-        public string Name { get; set; }
-
-        [Required]
         public string Username { get; set; }
 
         [Required]
         public string Password { get; set; }
+
+        public string Name { get; set; }
 
         public virtual Address Address { get; set; }
 

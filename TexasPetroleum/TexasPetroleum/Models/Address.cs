@@ -11,6 +11,10 @@ namespace TexasPetroleum.Models
         public Address()
         {
             AddressId = Guid.NewGuid();
+            AddressLine1 = String.Empty;
+            City = String.Empty;
+            State = String.Empty;
+            ZipCode = String.Empty;
         }
 
         [Key]
