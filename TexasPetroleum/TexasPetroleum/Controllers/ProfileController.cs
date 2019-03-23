@@ -10,13 +10,13 @@ namespace TexasPetroleum.Controllers
     public class ProfileController : Controller
     {
         // GET: Profile
-        [Authorize]
+        
         public ActionResult Index()
         {
             return View();
         }
 
-        [HttpGet]
+        
         public ActionResult Edit()
         {
             //var context = new QuoteContext();
