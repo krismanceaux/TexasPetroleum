@@ -13,6 +13,7 @@
         <div class="form-group">
             <div class="row">
                 @Html.LabelFor(m => m.Name)
+                @Html.ValidationMessageFor(m => m.Name)
             </div>
             <div class="row">
                 @Html.EditorFor(m => m.Name)
@@ -21,6 +22,7 @@
         <div class="form-group">
             <div class="row">
                 @Html.LabelFor(m => m.AddressLine1)
+                @Html.ValidationMessageFor(m => m.AddressLine1)
             </div>
             <div class="row">
                 @Html.EditorFor(m => m.AddressLine1)
@@ -29,6 +31,7 @@
         <div class="form-group">
             <div class="row">
                 @Html.LabelFor(m => m.AddressLine2)
+                @Html.ValidationMessageFor(m => m.AddressLine2)
             </div>
             <div class="row">
                 @Html.EditorFor(m => m.AddressLine2)
@@ -37,6 +40,7 @@
         <div class="form-group">
             <div class="row">
                 @Html.LabelFor(m => m.City)
+                @Html.ValidationMessageFor(m => m.City)
             </div>
             <div class="row">
                 @Html.EditorFor(m => m.City)
@@ -44,11 +48,13 @@
         </div>
         <div class="form-group">
             <label for="inputState">State</label>
+            @Html.ValidationMessageFor(m => m.StateOption)
             @Html.DropDownListFor(m => m.StateOption, new SelectList(Enum.GetValues(typeof(DisplayEnums.StateOptions))), "Select Option", new { @class = "form-control" })
         </div>
         <div class="form-group">
             <div class="row">
                 @Html.LabelFor(m => m.Zipcode)
+                @Html.ValidationMessageFor(m => m.Zipcode)
             </div>
             <div class="row">
                 @Html.EditorFor(m => m.Zipcode)
