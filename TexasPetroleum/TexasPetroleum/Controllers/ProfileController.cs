@@ -16,26 +16,27 @@ namespace TexasPetroleum.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Edit()
-        {
-            //var context = new QuoteContext();
-            //var client = context.Clients.SingleOrDefault(x => x.ClientId == )
+        //I just commented this out for now/ change later?
+        //[HttpGet]
+        //public ActionResult Edit()
+        //{
+        //    //var context = new QuoteContext();
+        //    //var client = context.Clients.SingleOrDefault(x => x.ClientId == )
 
-            //// If no client data exists, create new client to pass to view
-            //if (currentUser.Client == null)
-            //{
-            //    currentUser.Client = new Client();
-            //}
+        //    //// If no client data exists, create new client to pass to view
+        //    //if (currentUser.Client == null)
+        //    //{
+        //    //    currentUser.Client = new Client();
+        //    //}
 
-            //ProfileViewModel vm = new ProfileViewModel()
-            //{
-            //    Name = currentUser.Client.Name,
-            //    Address = currentUser.Client.Address
-            //};
+        //    //ProfileViewModel vm = new ProfileViewModel()
+        //    //{
+        //    //    Name = currentUser.Client.Name,
+        //    //    Address = currentUser.Client.Address
+        //    //};
 
-            //return View();
-        }
+        //    //return View();
+        //}
 
         [HttpPost]
         public ActionResult Edit(ProfileVM model)

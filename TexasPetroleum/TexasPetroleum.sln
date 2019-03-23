@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TexasPetroleum", "TexasPetroleum\TexasPetroleum.csproj", "{B67DD3B2-505B-466D-970E-7D75F1769A8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TexasPetroleum.Tests", "TexasPetroleum.Tests\TexasPetroleum.Tests.csproj", "{A9FE59F5-858E-4207-B9BE-2D24D639C0A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B67DD3B2-505B-466D-970E-7D75F1769A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B67DD3B2-505B-466D-970E-7D75F1769A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B67DD3B2-505B-466D-970E-7D75F1769A8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9FE59F5-858E-4207-B9BE-2D24D639C0A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9FE59F5-858E-4207-B9BE-2D24D639C0A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9FE59F5-858E-4207-B9BE-2D24D639C0A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9FE59F5-858E-4207-B9BE-2D24D639C0A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
