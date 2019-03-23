@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace TexasPetroleum.Controllers
+namespace FuelRatePredictor.Controllers
 {
     public class HomeController : Controller
     {
@@ -24,6 +24,12 @@ namespace TexasPetroleum.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        
+        public ActionResult UserHub()
+        {
             return View();
         }
     }
