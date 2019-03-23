@@ -48,13 +48,13 @@
         </div>
         <div class="form-group">
             <div class="row">
-                @Html.LabelFor(m => m.ZipCode)
+                @Html.LabelFor(m => m.Zipcode)
             </div>
             <div class="row">
-                @Html.EditorFor(m => m.ZipCode)
+                @Html.EditorFor(m => m.Zipcode)
             </div>
         </div>
-        @using (Html.BeginForm("Edit", "ProfileController", FormMethod.Post))
+        @using (Html.BeginForm("Edit", "Profile", FormMethod.Post))
         {
             <button>Save</button>
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -10,31 +11,25 @@ namespace TexasPetroleum.Models
     {
         public Address()
         {
-            AddressId = Guid.NewGuid();
             AddressLine1 = String.Empty;
             City = String.Empty;
-            State = String.Empty;
-            ZipCode = String.Empty;
+            State = "AK";
+            Zipcode = String.Empty;
         }
 
-        [Key]
-        public Guid AddressId { get; set; }
+        [Key,ForeignKey("Client")]
+        public Guid Id { get; set; }
 
-        [Required]
         public string AddressLine1 { get; set; }
 
         public string AddressLine2 { get; set; }
 
-        [Required]
         public string City { get; set; }
 
-        [Required]
         public string State { get; set; }
 
-        [Required]
-        public string ZipCode { get; set; }
+        public string Zipcode { get; set; }
 
-        [Required]
         public virtual Client Client { get; set; }
     }
 }

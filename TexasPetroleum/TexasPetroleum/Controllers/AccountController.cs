@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TexasPetroleum.DAL;
 using TexasPetroleum.Models;
 using TexasPetroleum.ViewModels;
 
@@ -27,6 +28,7 @@ namespace TexasPetroleum.Controllers
                 if (context.Clients.Any(x => x.Username == user.Username && x.Password == user.Password))
                 {
                     // Redirect to UserHub
+                    ApplicationSession.Username = user.Username;
                     return Redirect("/Home/UserHub");
                 }
                 else
@@ -69,14 +71,15 @@ namespace TexasPetroleum.Controllers
 
                         newClient.Username = user.Username;
                         newClient.Password = user.Password;
+                        newClient.Address = new Address();
+                        newClient.Address.Id = newClient.ClientId;
                         
-                        // Need to save correctly
                         context.Addresses.Add(newClient.Address);   
                         context.Clients.Add(newClient);
 
                         context.SaveChanges();
 
-                        return Redirect("/Home/Login");
+                        return Redirect("/Account/Login");
                     }
                 }
             }
