@@ -26,7 +26,7 @@ namespace TexasPetroleum.ViewModels
 
         [Display(Name = "State")]
         [Required(ErrorMessage ="State is required")]
-        public StateOptions StateOption { get; set; }
+        public string State { get; set; }
 
         [Display(Name = "Zipcode")]
         [Required(ErrorMessage = "Zipcode is required")]
@@ -48,6 +48,15 @@ namespace TexasPetroleum.ViewModels
             get
             {
                 return Math.Round(SuggestedPrice * GallonsRequested, 2);
+            }
+        }
+
+        [Display(Name = "Address")]
+        public string AddressString
+        {
+            get
+            {
+                return (AddressLine1 + " " + AddressLine2 + ", " + City + ", " + State + " " + Zipcode);
             }
         }
     }
