@@ -25,7 +25,7 @@ namespace TexasPetroleum.Models
         public string Username { get; set; }
 
         [Required]
-        string Password { get; set; }
+        public string Password { get; set; }
 
         public virtual Address Address { get; set; }
 
