@@ -7,15 +7,15 @@
 <h2>QuoteHistory</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Index", "Quote", null, new { @class = "btn btn-lg btn-outline-success" })
+    @Html.ActionLink("Create New", "Edit", "Quote", null, new { @class = "btn btn-lg btn-outline-success" })
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.GallonsRequested)
+            @Html.DisplayNameFor(model => model.First().GallonsRequested)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DeliveryAddress)
+            @Html.DisplayNameFor(model => model.First().AddressString)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DeliveryDate)
@@ -35,7 +35,7 @@
             @Html.DisplayFor(modelItem => item.GallonsRequested)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DeliveryAddress)
+            @Html.DisplayFor(modelItem => item.AddressString)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DeliveryDate)

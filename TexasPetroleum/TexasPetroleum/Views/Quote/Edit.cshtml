@@ -13,33 +13,27 @@
 
     <div class="form-group">
         @Html.LabelFor(m => m.AddressLine1)
-        @Html.ValidationMessageFor(m => m.AddressLine1)
-        @Html.TextBoxFor(m => m.AddressLine1, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.AddressLine1, new { @readonly = "readonly", @class = "form-control" })
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.AddressLine2)
-        @Html.ValidationMessageFor(m => m.AddressLine2)
-        @Html.TextBoxFor(m => m.AddressLine2, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.AddressLine2, new { @readonly = "readonly", @class = "form-control" })
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.City)
-        @Html.ValidationMessageFor(m => m.City)
-        @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.City, new { @readonly = "readonly", @class = "form-control" })
     </div>
     <div class="form-group">
-        <label for="inputState">State</label>
-        @Html.ValidationMessageFor(m => m.StateOption)
-        @Html.DropDownListFor(m => m.StateOption, new SelectList(Enum.GetValues(typeof(DisplayEnums.StateOptions))), "Select Option", new { @class = "form-control" })
+        @Html.LabelFor(m => m.State)
+        @Html.TextBoxFor(m => m.State, new { @readonly = "readonly", @class = "form-control" })
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Zipcode)
-        @Html.ValidationMessageFor(m => m.Zipcode)
-        @Html.TextBoxFor(m => m.Zipcode, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Zipcode, new { @readonly = "readonly", @class = "form-control" })
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.DeliveryDate)
-        @Html.ValidationMessageFor(m => m.DeliveryDate)
-        @Html.TextBoxFor(m => m.DeliveryDate, new { @class = "form-control", @type = "date" })
+        @Html.TextBoxFor(m => m.DeliveryDate, new { @readonly = "readonly", @class = "form-control" })
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.GallonsRequested)

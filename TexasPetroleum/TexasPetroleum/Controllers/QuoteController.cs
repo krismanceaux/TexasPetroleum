@@ -23,43 +23,37 @@ namespace FuelRatePredictor.Controllers
         [HttpGet]
         public ActionResult Edit()
         {
-            return View();
+            var context = new QuoteContext();
+            var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
+
+            var quote = new QuoteVM();
+            quote.AddressLine1 = client.Address.AddressLine1;
+            quote.AddressLine2 = client.Address.AddressLine2;
+            quote.City = client.Address.City;
+            quote.State = client.Address.State;
+            quote.Zipcode = client.Address.Zipcode;
+
+            return View(quote);
         }
 
         [HttpPost]
         public ActionResult Edit(QuoteVM quote)
         {
-            if (ModelState.IsValid)
-            {
-                var context = new QuoteContext();
-                var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
+            var context = new QuoteContext();
+            var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
+            var address = client.Address;
 
-                Address address = new Address();
-                FuelQuote fuelQuote = new FuelQuote();
+            FuelQuote fuelQuote = new FuelQuote();
 
-                address.AddressLine1 = quote.AddressLine1;
-                address.AddressLine2 = quote.AddressLine2;
-                address.City = quote.City;
-                address.State = quote.StateOption.ToString();
-                address.Zipcode = quote.Zipcode;
+            fuelQuote.GallonsRequested = quote.GallonsRequested;
+            fuelQuote.TimeCreated = DateTime.Now;
+            fuelQuote.DeliveryAddress = address;
 
-                fuelQuote.GallonsRequested = quote.GallonsRequested;
-                fuelQuote.TimeCreated = DateTime.Now;
-                fuelQuote.DeliveryAddress = address;
+            client.FuelQuotes.Add(fuelQuote);
+            context.Quotes.Add(fuelQuote);
+            context.SaveChanges();
 
-                client.FuelQuotes.Add(fuelQuote);
-
-                //context.Quotes.Add(fuelQuote);
-
-                context.SaveChanges();
-
-                return Redirect("/Home/UserHub");
-            }
-            else
-            {
-
-            }
-            
+            return Redirect("/Home/UserHub");         
         }
         
         public ActionResult QuoteHistory()
@@ -78,7 +72,7 @@ namespace FuelRatePredictor.Controllers
                     AddressLine1 = quote.DeliveryAddress.AddressLine1,
                     AddressLine2 = quote.DeliveryAddress.AddressLine2,
                     City = quote.DeliveryAddress.City,
-                    StateOption = (StateOptions)Enum.Parse(typeof(StateOptions), quote.DeliveryAddress.State),
+                    State = quote.DeliveryAddress.State,
                     Zipcode = quote.DeliveryAddress.Zipcode,
                     DeliveryDate = quote.DeliveryDate,
                     GallonsRequested = quote.GallonsRequested,
