@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,7 +8,7 @@ namespace TexasPetroleum.Models
 {
     public class Client
     {
-        ublic Client()
+        public Client()
         {
             ClientId = Guid.NewGuid();
             Address = new Address();
@@ -17,9 +18,14 @@ namespace TexasPetroleum.Models
         [Required]
         public Guid ClientId { get; set; }
 
-
         [Required]
         public string Name { get; set; }
+
+        [Required]
+        public string Username { get; set; }
+
+        [Required]
+        string Password { get; set; }
 
         public virtual Address Address { get; set; }
 
