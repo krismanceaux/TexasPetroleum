@@ -149,6 +149,14 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Media\files.jpg" />
+    <Content Include="Media\fuel-truck.jpg" />
+    <Content Include="Media\gas-station.jpg" />
+    <Content Include="Media\handing-folder.jpg" />
+    <Content Include="Media\jet-fuel.jpg" />
+    <Content Include="Media\mountain-road.jpg" />
+    <Content Include="Media\silhouette.jpg" />
+    <Content Include="Media\texas-wood.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -236,7 +244,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
