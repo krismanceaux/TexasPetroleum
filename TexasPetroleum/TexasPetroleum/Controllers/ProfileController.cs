@@ -31,11 +31,11 @@ namespace TexasPetroleum.Controllers
                 AddressLine1 = address.AddressLine1,
                 AddressLine2 = address.AddressLine2,
                 City = address.City,
-                StateOption = (StateOptions)Enum.Parse(typeof(StateOptions), address.State),
+                StateOption = client.Address == null? Enums.DisplayEnums.StateOptions.AK :(StateOptions)Enum.Parse(typeof(StateOptions), address.State),
                 Zipcode = address.Zipcode
             };
 
-            return View(vm);
+            return View();
         }
 
         [HttpPost]
