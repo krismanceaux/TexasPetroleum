@@ -1,5 +1,5 @@
 ﻿using TexasPetroleum.DAL;
-using TexasPetroleum.Models;
+//using TexasPetroleum.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,9 +39,29 @@ namespace FuelRatePredictor.Controllers
         [HttpPost]
         public ActionResult Edit(QuoteVM quote)
         {
+<<<<<<< HEAD
             var context = new QuoteContext();
             var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
             var address = client.Address;
+=======
+            //if (ModelState.IsValid)
+            //{
+                var context = new QuoteContext();
+                var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
+
+                Address address = new Address();
+                FuelQuote fuelQuote = new FuelQuote();
+
+                address.AddressLine1 = quote.AddressLine1;
+                address.AddressLine2 = quote.AddressLine2;
+                address.City = quote.City;
+                address.State = quote.StateOption.ToString();
+                address.Zipcode = quote.Zipcode;
+
+                fuelQuote.GallonsRequested = quote.GallonsRequested;
+                fuelQuote.TimeCreated = DateTime.Now;
+                fuelQuote.DeliveryAddress = address;
+>>>>>>> develop-kris
 
             FuelQuote fuelQuote = new FuelQuote();
 
@@ -54,7 +74,17 @@ namespace FuelRatePredictor.Controllers
             context.Quotes.Add(fuelQuote);
             context.SaveChanges();
 
+<<<<<<< HEAD
             return Redirect("/Home/UserHub");         
+=======
+                return Redirect("/Home/UserHub");
+            //}
+            //else
+            //{
+
+            //}
+            
+>>>>>>> develop-kris
         }
         
         public ActionResult QuoteHistory()

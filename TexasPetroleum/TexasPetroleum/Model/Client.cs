@@ -1,4 +1,4 @@
-﻿namespace TexasPetroleum
+namespace TexasPetroleum
 {
     using System;
     using System.Collections.Generic;
@@ -14,12 +14,15 @@
             FuelQuotes = new HashSet<FuelQuote>();
         }
 
-        public int Id { get; set; }
+        public Guid ClientID { get; set; }
 
         public string Name { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public Address Address { get; set; }
-        public  ICollection<FuelQuote> FuelQuotes { get; set; }
+
+        public Guid? AddressID { get; set; }
+
+        public virtual Address Address { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FuelQuote> FuelQuotes { get; set; }
     }
 }
