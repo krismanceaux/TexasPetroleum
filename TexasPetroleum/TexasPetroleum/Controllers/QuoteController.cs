@@ -62,20 +62,21 @@ namespace FuelRatePredictor.Controllers
         {
             var context = new QuoteContext();
 
-            var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
-
+            var client = context.Clients.Include(x => x.FuelQuotes).Include(x => x.Address).Single(x => x.Username == ApplicationSession.Username);
             List<FuelQuote> fuelQuotes = client.FuelQuotes.ToList();
             List<QuoteVM> history = new List<QuoteVM>();
 
             foreach (var quote in fuelQuotes)
             {
+
                 var vm = new QuoteVM
                 {
-                    AddressLine1 = quote.DeliveryAddress.AddressLine1,
-                    AddressLine2 = quote.DeliveryAddress.AddressLine2,
-                    City = quote.DeliveryAddress.City,
-                    State = quote.DeliveryAddress.State,
-                    Zipcode = quote.DeliveryAddress.Zipcode,
+                    //Added a few checks for null while debugging, but may not be necessary in final version
+                    AddressLine1 = quote.DeliveryAddress == null? "" : quote.DeliveryAddress.AddressLine1,
+                    AddressLine2 = quote.DeliveryAddress == null? "" : quote.DeliveryAddress.AddressLine2,
+                    City = quote.DeliveryAddress == null ? "" : quote.DeliveryAddress.City,
+                    State = quote.DeliveryAddress == null ? "" : quote.DeliveryAddress.State,
+                    Zipcode = quote.DeliveryAddress == null ? "" : quote.DeliveryAddress.Zipcode,
                     DeliveryDate = quote.DeliveryDate,
                     GallonsRequested = quote.GallonsRequested,
                     SuggestedPrice = quote.SuggestedPrice

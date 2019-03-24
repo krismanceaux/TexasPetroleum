@@ -163,6 +163,10 @@
     <Compile Include="Migrations\201903242058484_CreatePricePerGallonColumnInFuelQuotesTable.Designer.cs">
       <DependentUpon>201903242058484_CreatePricePerGallonColumnInFuelQuotesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903242215065_RemovePricePerGallon.cs" />
+    <Compile Include="Migrations\201903242215065_RemovePricePerGallon.Designer.cs">
+      <DependentUpon>201903242215065_RemovePricePerGallon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Client.cs" />
@@ -292,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903242058484_CreatePricePerGallonColumnInFuelQuotesTable.resx">
       <DependentUpon>201903242058484_CreatePricePerGallonColumnInFuelQuotesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903242215065_RemovePricePerGallon.resx">
+      <DependentUpon>201903242215065_RemovePricePerGallon.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

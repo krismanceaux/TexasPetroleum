@@ -23,7 +23,5 @@
         public Client Client { get; set; }
 
         public double TotalPrice { get; set; }
-
-        public double PricePerGallon { get; set; }
     }
 }
