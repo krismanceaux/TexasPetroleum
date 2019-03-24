@@ -1,5 +1,5 @@
 ﻿using TexasPetroleum.DAL;
-using TexasPetroleum.Models;
+//using TexasPetroleum.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using TexasPetroleum;
 using TexasPetroleum.ViewModels;
 using static TexasPetroleum.Enums.DisplayEnums;
+using System.Data.Entity;
 
 namespace FuelRatePredictor.Controllers
 {
@@ -24,14 +25,14 @@ namespace FuelRatePredictor.Controllers
         public ActionResult Edit()
         {
             var context = new QuoteContext();
-            var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
+            var client = context.Clients.Include(c => c.Address).Single(x => x.Username.Contains(ApplicationSession.Username));
 
             var quote = new QuoteVM();
-            quote.AddressLine1 = client.Address.AddressLine1;
-            quote.AddressLine2 = client.Address.AddressLine2;
-            quote.City = client.Address.City;
-            quote.State = client.Address.State;
-            quote.Zipcode = client.Address.Zipcode;
+            quote.AddressLine1 = client.Address.AddressLine1 == null ? "" : client.Address.AddressLine1;
+            quote.AddressLine2 = client.Address.AddressLine2 == null ? "" : client.Address.AddressLine2;
+            quote.City = client.Address.City == null ? "" : client.Address.City;
+            quote.State = client.Address.State == null ? "" : client.Address.State;
+            quote.Zipcode = client.Address.Zipcode == null ? "" : client.Address.Zipcode;
 
             return View(quote);
         }
@@ -40,7 +41,7 @@ namespace FuelRatePredictor.Controllers
         public ActionResult Edit(QuoteVM quote)
         {
             var context = new QuoteContext();
-            var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
+            var client = context.Clients.Include(c => c.Address).Single(x => x.Username.Contains(ApplicationSession.Username));
             var address = client.Address;
 
             FuelQuote fuelQuote = new FuelQuote();
@@ -51,7 +52,7 @@ namespace FuelRatePredictor.Controllers
             fuelQuote.DeliveryAddress = address;
 
             client.FuelQuotes.Add(fuelQuote);
-            context.Quotes.Add(fuelQuote);
+            context.FuelQuotes.Add(fuelQuote);
             context.SaveChanges();
 
             return Redirect("/Home/UserHub");         

@@ -1,72 +1,75 @@
-﻿@using TexasPetroleum.Enums
-
-@model TexasPetroleum.ViewModels.ProfileVM
+﻿@model TexasPetroleum.ViewModels.ProfileVM
+@using TexasPetroleum.Enums
 
 @{
-        ViewBag.Title = "Edit";
+    ViewBag.Title = "Profile Management";
 }
 
-<h2>Profile Management</h2>
+<h2>Edit</h2>
 
-<div class="container">
-    <form action="Edit" method="post">
-        <div class="form-group">
-            <div class="row">
-                @Html.LabelFor(m => m.Name)
-            </div>
-            @Html.ValidationMessageFor(m => m.Name)
-            <div class="row">
-                @Html.EditorFor(m => m.Name)
-            </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>ProfileVM</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
-        <div class="form-group">
-            <div class="row">
-                @Html.LabelFor(m => m.AddressLine1)
-                <dvi class="row">
-                    @Html.ValidationMessageFor(m => m.AddressLine1)
-                </dvi>
-                
-            </div>
-            <div class="row">
-                @Html.EditorFor(m => m.AddressLine1)
-            </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AddressLine1, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.AddressLine1, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.AddressLine1, "", new { @class = "text-danger" })
         </div>
-        <div class="form-group">
-            <div class="row">
-                @Html.LabelFor(m => m.AddressLine2)
-                @Html.ValidationMessageFor(m => m.AddressLine2)
-            </div>
-            <div class="row">
-                @Html.EditorFor(m => m.AddressLine2)
-            </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AddressLine2, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.AddressLine2, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.AddressLine2, "", new { @class = "text-danger" })
         </div>
-        <div class="form-group">
-            <div class="row">
-                @Html.LabelFor(m => m.City)
-                @Html.ValidationMessageFor(m => m.City)
-            </div>
-            <div class="row">
-                @Html.EditorFor(m => m.City)
-            </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
         </div>
-        <div class="form-group">
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
             <label for="inputState">State</label>
-            @Html.ValidationMessageFor(m => m.StateOption)
             @Html.DropDownListFor(m => m.StateOption, new SelectList(Enum.GetValues(typeof(DisplayEnums.StateOptions))), "Select Option", new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            <div class="row">
-                @Html.LabelFor(m => m.Zipcode)
-                @Html.ValidationMessageFor(m => m.Zipcode)
-            </div>
-            <div class="row">
-                @Html.EditorFor(m => m.Zipcode)
-            </div>
-        </div>
-        @using (Html.BeginForm("Edit", "Profile", FormMethod.Post))
-        {
-            <button>Save</button>
-        }
-    </form>
-</div>
+    </div>
 
+    <div class="form-group">
+        @Html.LabelFor(model => model.Zipcode, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Zipcode, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Zipcode, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
