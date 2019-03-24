@@ -15,5 +15,12 @@
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<FuelQuote> FuelQuotes { get; set; }
-    }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<FuelQuote>()
+                .Property(f => f.DeliveryDate)
+                .HasColumnType("datetime2");
+        }
+    }   
 }
