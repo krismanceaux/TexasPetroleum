@@ -45,6 +45,7 @@ namespace FuelRatePredictor.Controllers
 
             FuelQuote fuelQuote = new FuelQuote();
 
+            fuelQuote.DeliveryDate = quote.DeliveryDate;
             fuelQuote.GallonsRequested = quote.GallonsRequested;
             fuelQuote.TimeCreated = DateTime.Now;
             fuelQuote.DeliveryAddress = address;
