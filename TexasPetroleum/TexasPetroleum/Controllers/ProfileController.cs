@@ -42,22 +42,28 @@ namespace TexasPetroleum.Controllers
         [HttpPost]
         public ActionResult Edit(ProfileVM model)
         {
+            if (ModelState.IsValid)
+            {
+                var context = new QuoteContext();
+                var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
+                var address = context.Addresses.Single(x => x.Id == client.ClientId);
 
-            var context = new QuoteContext();
-            var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
-            var address = context.Addresses.Single(x => x.Id == client.ClientId);
+                client.Name = model.Name;
+                address.AddressLine1 = model.AddressLine1;
+                address.AddressLine2 = model.AddressLine2;
+                address.City = model.City;
+                address.State = model.StateOption.ToString();
+                address.Zipcode = model.Zipcode;
 
-            client.Name = model.Name;
-            address.AddressLine1 = model.AddressLine1;
-            address.AddressLine2 = model.AddressLine2;
-            address.City = model.City;
-            address.State = model.StateOption.ToString();
-            address.Zipcode = model.Zipcode;
+                client.Address = address;
+                context.SaveChanges();
 
-            client.Address = address;
-            context.SaveChanges();
-
-            return Redirect("/Home/UserHub");
+                return Redirect("/Home/UserHub");
+            }
+            else
+            {
+                return View(model);
+            }
         }
     }
 }

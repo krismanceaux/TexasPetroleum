@@ -13,8 +13,8 @@
         <div class="form-group">
             <div class="row">
                 @Html.LabelFor(m => m.Name)
-                @Html.ValidationMessageFor(m => m.Name)
             </div>
+            @Html.ValidationMessageFor(m => m.Name)
             <div class="row">
                 @Html.EditorFor(m => m.Name)
             </div>
@@ -22,7 +22,10 @@
         <div class="form-group">
             <div class="row">
                 @Html.LabelFor(m => m.AddressLine1)
-                @Html.ValidationMessageFor(m => m.AddressLine1)
+                <dvi class="row">
+                    @Html.ValidationMessageFor(m => m.AddressLine1)
+                </dvi>
+                
             </div>
             <div class="row">
                 @Html.EditorFor(m => m.AddressLine1)
