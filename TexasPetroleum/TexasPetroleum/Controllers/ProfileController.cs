@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using TexasPetroleum.DAL;
 using TexasPetroleum.ViewModels;
 using static TexasPetroleum.Enums.DisplayEnums;
+using System.Data.Entity;
 
 namespace TexasPetroleum.Controllers
 {
@@ -22,8 +23,10 @@ namespace TexasPetroleum.Controllers
         public ActionResult Edit()
         {
             var context = new QuoteContext();
-            var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
+            //var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
+            var client = context.Clients.Include(c => c.Address).Single(x => x.Username.Contains(ApplicationSession.Username));
             var address = client.Address == null ? new Address() : client.Address;
+            
 
             ProfileVM vm = new ProfileVM()
             {
