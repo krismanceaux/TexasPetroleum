@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TexasPetroleum.DAL;
-using TexasPetroleum.Models;
 using TexasPetroleum.ViewModels;
 using static TexasPetroleum.Enums.DisplayEnums;
 
@@ -45,7 +44,7 @@ namespace TexasPetroleum.Controllers
 
             var context = new QuoteContext();
             var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
-            var address = context.Addresses.Single(x => x.Id == client.ClientId);
+            var address = context.Addresses.Single(x => x.Id == client.Id);
 
             client.Name = model.Name;
             address.AddressLine1 = model.AddressLine1;

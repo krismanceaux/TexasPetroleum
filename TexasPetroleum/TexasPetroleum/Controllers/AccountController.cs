@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TexasPetroleum.DAL;
-using TexasPetroleum.Models;
 using TexasPetroleum.ViewModels;
 
 namespace TexasPetroleum.Controllers
@@ -72,7 +71,7 @@ namespace TexasPetroleum.Controllers
                         newClient.Username = user.Username;
                         newClient.Password = user.Password;
                         newClient.Address = new Address();
-                        newClient.Address.Id = newClient.ClientId;
+                        newClient.Address.Id = newClient.Id;
                         
                         context.Addresses.Add(newClient.Address);   
                         context.Clients.Add(newClient);

@@ -149,9 +149,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903232034414_init.cs" />
-    <Compile Include="Migrations\201903232034414_init.Designer.cs">
-      <DependentUpon>201903232034414_init.cs</DependentUpon>
+    <Compile Include="Migrations\201903240105510_init.cs" />
+    <Compile Include="Migrations\201903240105510_init.Designer.cs">
+      <DependentUpon>201903240105510_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
@@ -271,12 +271,12 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903232034414_init.resx">
-      <DependentUpon>201903232034414_init.cs</DependentUpon>
-    </EmbeddedResource>
+    <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+    <EmbeddedResource Include="Migrations\201903240105510_init.resx">
+      <DependentUpon>201903240105510_init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
