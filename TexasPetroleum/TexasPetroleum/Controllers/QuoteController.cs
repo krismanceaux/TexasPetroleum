@@ -41,7 +41,7 @@ namespace FuelRatePredictor.Controllers
         public ActionResult Edit(QuoteVM quote)
         {
             var context = new QuoteContext();
-            var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
+            var client = context.Clients.Include(c => c.Address).Single(x => x.Username.Contains(ApplicationSession.Username));
             var address = client.Address;
 
             FuelQuote fuelQuote = new FuelQuote();

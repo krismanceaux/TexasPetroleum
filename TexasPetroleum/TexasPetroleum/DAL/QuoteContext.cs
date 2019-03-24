@@ -21,6 +21,9 @@
             modelBuilder.Entity<FuelQuote>()
                 .Property(f => f.DeliveryDate)
                 .HasColumnType("datetime2");
+            modelBuilder.Entity<FuelQuote>()
+                .Property(f => f.TimeCreated)
+                .HasColumnType("datetime2");
         }
     }   
 }
