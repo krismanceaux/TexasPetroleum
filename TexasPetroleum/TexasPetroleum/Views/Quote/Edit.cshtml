@@ -16,7 +16,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.AddressLine1, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(m => m.AddressLine1, new { @readonly = "readonly", @class = "form-control" })
+            @Html.TextBoxFor(model => model.AddressLine1, new { @readonly = "readonly", @class = "form-control" })
             @Html.ValidationMessageFor(model => model.AddressLine1, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -24,7 +24,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.AddressLine2, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(m => m.AddressLine2, new { @readonly = "readonly", @class = "form-control" })
+            @Html.TextBoxFor(model => model.AddressLine2, new { @readonly = "readonly", @class = "form-control" })
             @Html.ValidationMessageFor(model => model.AddressLine2, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -32,7 +32,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(m => m.City, new { @readonly = "readonly", @class = "form-control" })
+            @Html.TextBoxFor(model => model.City, new { @readonly = "readonly", @class = "form-control" })
             @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -40,7 +40,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(m => m.State, new { @readonly = "readonly", @class = "form-control" })
+            @Html.TextBoxFor(model => model.State, new { @readonly = "readonly", @class = "form-control" })
             @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -48,7 +48,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Zipcode, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(m => m.Zipcode, new { @readonly = "readonly", @class = "form-control" })
+            @Html.TextBoxFor(model => model.Zipcode, new { @readonly = "readonly", @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Zipcode, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -56,7 +56,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.DeliveryDate, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.GallonsRequested, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.TextBoxFor(model => model.DeliveryDate, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.DeliveryDate, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -64,7 +64,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.SuggestedPrice, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(m => m.SuggestedPrice, new { @readonly = "readonly", @class = "form-control" })
+            @Html.TextBoxFor(model => model.SuggestedPrice, new { @readonly = "readonly", @class = "form-control" })
             @Html.ValidationMessageFor(model => model.SuggestedPrice, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -72,16 +72,21 @@
     <div class="form-group">
         @Html.LabelFor(model => model.GallonsRequested, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.GallonsRequested, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.TextBoxFor(model => model.GallonsRequested, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.GallonsRequested, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+        @Html.LabelFor(model => model.TotalPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.TotalPrice, new { @readonly = "readonly", @class = "form-control" })
         </div>
     </div>
+    @using (Html.BeginForm("Edit", "Quote", FormMethod.Post))
+    {
+        <button>Save</button>
+    }
 </div>
 }
 
