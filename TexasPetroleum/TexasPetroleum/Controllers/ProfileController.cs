@@ -34,7 +34,7 @@ namespace TexasPetroleum.Controllers
                 AddressLine1 = address.AddressLine1,
                 AddressLine2 = address.AddressLine2,
                 City = address.City,
-                StateOption = client.Address == null? Enums.DisplayEnums.StateOptions.AK :(StateOptions)Enum.Parse(typeof(StateOptions), address.State),
+                StateOption = client.Address.State == null || client.Address.State == String.Empty ? Enums.DisplayEnums.StateOptions.AK : (StateOptions)Enum.Parse(typeof(StateOptions), address.State),
                 Zipcode = address.Zipcode
             };
 

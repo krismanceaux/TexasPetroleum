@@ -8,6 +8,16 @@
 
     public partial class Address
     {
+        public Address()
+        {
+            Id = -1;
+            AddressLine1 = String.Empty;
+            AddressLine2 = String.Empty;
+            City = String.Empty;
+            State = String.Empty;
+            Zipcode = String.Empty;
+        }
+
         public int Id { get; set; }
 
         public string AddressLine1 { get; set; }
