@@ -88,6 +88,13 @@ namespace FuelRatePredictor.Controllers
             return View(history);
         }
 
+        public double CalculateQuotePrice()
+        {
+            //Placeholder for Pricing Module calculations
+
+            return 0.00;
+        }
+
       
         public ActionResult SubmitSuccess()
         {
