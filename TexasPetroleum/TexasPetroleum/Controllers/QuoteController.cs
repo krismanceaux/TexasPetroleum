@@ -40,22 +40,29 @@ namespace FuelRatePredictor.Controllers
         [HttpPost]
         public ActionResult Edit(QuoteVM quote)
         {
-            var context = new QuoteContext();
-            var client = context.Clients.Include(c => c.Address).Single(x => x.Username.Contains(ApplicationSession.Username));
-            var address = client.Address;
+            if (ModelState.IsValid)
+            {
+                var context = new QuoteContext();
+                var client = context.Clients.Include(c => c.Address).Single(x => x.Username.Contains(ApplicationSession.Username));
+                var address = client.Address;
 
-            FuelQuote fuelQuote = new FuelQuote();
+                FuelQuote fuelQuote = new FuelQuote();
 
-            fuelQuote.DeliveryDate = quote.DeliveryDate;
-            fuelQuote.GallonsRequested = quote.GallonsRequested;
-            fuelQuote.TimeCreated = DateTime.Now;
-            fuelQuote.DeliveryAddress = address;
+                fuelQuote.DeliveryDate = quote.DeliveryDate;
+                fuelQuote.GallonsRequested = quote.GallonsRequested;
+                fuelQuote.TimeCreated = DateTime.Now;
+                fuelQuote.DeliveryAddress = address;
 
-            client.FuelQuotes.Add(fuelQuote);
-            context.FuelQuotes.Add(fuelQuote);
-            context.SaveChanges();
+                client.FuelQuotes.Add(fuelQuote);
+                context.FuelQuotes.Add(fuelQuote);
+                context.SaveChanges();
 
-            return Redirect("/Home/UserHub");         
+                return Redirect("/Home/UserHub");
+            }
+            else
+            {
+                return View(quote);
+            }
         }
         
         public ActionResult QuoteHistory()
