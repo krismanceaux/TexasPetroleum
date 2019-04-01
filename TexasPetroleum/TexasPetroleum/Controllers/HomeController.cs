@@ -3,13 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TexasPetroleum.AuthData;
+using TexasPetroleum.DAL;
 
 namespace FuelRatePredictor.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
+            if(id == 1)
+            {
+                if (ApplicationSession.Username != "")
+                {
+                    ApplicationSession.Username = "";
+                }
+            }
             return View();
         }
 
@@ -27,7 +36,7 @@ namespace FuelRatePredictor.Controllers
             return View();
         }
 
-        
+        [AuthAttribute]
         public ActionResult UserHub()
         {
             return View();

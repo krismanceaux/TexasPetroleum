@@ -7,6 +7,7 @@ using TexasPetroleum.DAL;
 using TexasPetroleum.ViewModels;
 using static TexasPetroleum.Enums.DisplayEnums;
 using System.Data.Entity;
+using TexasPetroleum.AuthData;
 
 namespace TexasPetroleum.Controllers
 {
@@ -19,28 +20,36 @@ namespace TexasPetroleum.Controllers
             return View();
         }
 
+        [AuthAttribute]
         [HttpGet]
         public ActionResult Edit()
         {
-            var context = new QuoteContext();
-            //var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
-            var client = context.Clients.Include(c => c.Address).Single(x => x.Username.Contains(ApplicationSession.Username));
-            var address = client.Address == null ? new Address() : client.Address;
-            
-
-            ProfileVM vm = new ProfileVM()
+            if (ApplicationSession.Username != "" && ApplicationSession.Username != null)
             {
-                Name = client.Name,
-                AddressLine1 = address.AddressLine1,
-                AddressLine2 = address.AddressLine2,
-                City = address.City,
-                StateOption = client.Address.State == null || client.Address.State == String.Empty ? Enums.DisplayEnums.StateOptions.AK : (StateOptions)Enum.Parse(typeof(StateOptions), address.State),
-                Zipcode = address.Zipcode
-            };
+                var context = new QuoteContext();
+                //var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
 
-            return View(vm);
+
+                var client = context.Clients.Include(c => c.Address).Single(x => x.Username.Contains(ApplicationSession.Username));
+                var address = client.Address == null ? new Address() : client.Address;
+
+
+                ProfileVM vm = new ProfileVM()
+                {
+                    Name = client.Name,
+                    AddressLine1 = address.AddressLine1,
+                    AddressLine2 = address.AddressLine2,
+                    City = address.City,
+                    StateOption = client.Address.State == null || client.Address.State == String.Empty ? Enums.DisplayEnums.StateOptions.AK : (StateOptions)Enum.Parse(typeof(StateOptions), address.State),
+                    Zipcode = address.Zipcode
+                };
+
+                return View(vm);
+            }
+            return View();
         }
 
+        [AuthAttribute]
         [HttpPost]
         public ActionResult Edit(ProfileVM model)
         {
