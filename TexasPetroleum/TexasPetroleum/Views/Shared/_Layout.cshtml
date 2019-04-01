@@ -37,6 +37,13 @@
             </ul>
             <ul class=" navbar-nav ml-auto">
                 <li class="nav-item">
+                    @Html.ActionLink("Login", "Login", "Account", new { id = 1 }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Register", "Register", "Account", new { id = 1 }, new { @class = "nav-link" })
+                </li>
+
+                <li class="nav-item">
                     @Html.ActionLink("Logout", "Index", "Home", new { id = 1 }, new { @class = "nav-link" })
                 </li>
             </ul>
