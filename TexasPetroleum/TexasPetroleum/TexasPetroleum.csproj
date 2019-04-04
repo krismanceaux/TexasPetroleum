@@ -146,6 +146,10 @@
     <Compile Include="Migrations\201904040512116_Init.Designer.cs">
       <DependentUpon>201904040512116_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904040545486_MadeClientAttributesNullable.cs" />
+    <Compile Include="Migrations\201904040545486_MadeClientAttributesNullable.Designer.cs">
+      <DependentUpon>201904040545486_MadeClientAttributesNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ClientLogin.cs" />
@@ -281,6 +285,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201904040512116_Init.resx">
       <DependentUpon>201904040512116_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904040545486_MadeClientAttributesNullable.resx">
+      <DependentUpon>201904040545486_MadeClientAttributesNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

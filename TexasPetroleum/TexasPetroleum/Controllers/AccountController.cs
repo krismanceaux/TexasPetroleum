@@ -68,9 +68,14 @@ namespace TexasPetroleum.Controllers
                     else
                     {
                         var newLogin = new ClientLogin();
-                        newLogin.Id = 1;
                         newLogin.Username = user.Username;
                         newLogin.Password = user.Password;
+
+                        var newClient = new Client();
+                        newClient.ClientLogin = newLogin;
+
+
+                        context.Clients.Add(newClient);
                         context.ClientLogins.Add(newLogin);
                         context.SaveChanges();
 
