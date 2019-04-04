@@ -30,18 +30,18 @@ namespace TexasPetroleum.Controllers
                 //var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
 
 
-                var client = context.Clients.Include(c => c.Address).Single(x => x.Username.Contains(ApplicationSession.Username));
-                var address = client.Address == null ? new Address() : client.Address;
+                //var client = context.Clients.Include(c => c.Address).Single(x => x.Username.Contains(ApplicationSession.Username));
+                //var address = client.Address == null ? new Address() : client.Address;
 
 
                 ProfileVM vm = new ProfileVM()
                 {
-                    Name = client.Name,
-                    AddressLine1 = address.AddressLine1,
-                    AddressLine2 = address.AddressLine2,
-                    City = address.City,
-                    StateOption = client.Address.State == null || client.Address.State == String.Empty ? Enums.DisplayEnums.StateOptions.AK : (StateOptions)Enum.Parse(typeof(StateOptions), address.State),
-                    Zipcode = address.Zipcode
+                    //Name = client.Name,
+                    //AddressLine1 = address.AddressLine1,
+                    //AddressLine2 = address.AddressLine2,
+                    //City = address.City,
+                    //StateOption = client.Address.State == null || client.Address.State == String.Empty ? Enums.DisplayEnums.StateOptions.AK : (StateOptions)Enum.Parse(typeof(StateOptions), address.State),
+                    //Zipcode = address.Zipcode
                 };
 
                 return View(vm);
@@ -55,19 +55,19 @@ namespace TexasPetroleum.Controllers
         {
             if (ModelState.IsValid)
             {
-                var context = new QuoteContext();
-                var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
-                var address = context.Addresses.Single(x => x.Id == client.Id);
+                //var context = new QuoteContext();
+                //var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
+                //var address = context.Addresses.Single(x => x.Id == client.Id);
 
-                client.Name = model.Name;
-                address.AddressLine1 = model.AddressLine1;
-                address.AddressLine2 = model.AddressLine2;
-                address.City = model.City;
-                address.State = model.StateOption.ToString();
-                address.Zipcode = model.Zipcode;
+                //client.Name = model.Name;
+                //address.AddressLine1 = model.AddressLine1;
+                //address.AddressLine2 = model.AddressLine2;
+                //address.City = model.City;
+                //address.State = model.StateOption.ToString();
+                //address.Zipcode = model.Zipcode;
          
-                client.Address = address;
-                context.SaveChanges();
+                //client.Address = address;
+                //context.SaveChanges();
 
                 return Redirect("/Home/UserHub");
             }

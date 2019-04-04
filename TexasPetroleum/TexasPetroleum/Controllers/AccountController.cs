@@ -21,21 +21,22 @@ namespace TexasPetroleum.Controllers
         {
             if (ModelState.IsValid)
             {
-                var context = new QuoteContext();
-                var client = context.Clients.First();
+                //var context = new QuoteContext();
+                //var client = context.Clients.First();
 
-                if (context.Clients.Any(x => x.Username == user.Username && x.Password == user.Password))
-                {
-                    // Redirect to UserHub
-                    ApplicationSession.Username = user.Username;
-                    return Redirect("/Home/UserHub");
-                }
-                else
-                {
-                    // Display error
-                    ModelState.AddModelError(string.Empty, "Invalid Username or Password");
-                    return View(user);
-                }
+                //if (context.Clients.Any(x => x.Username == user.Username && x.Password == user.Password))
+                //{
+                //    // Redirect to UserHub
+                //    ApplicationSession.Username = user.Username;
+                //    return Redirect("/Home/UserHub");
+                //}
+                //else
+                //{
+                //    // Display error
+                //    ModelState.AddModelError(string.Empty, "Invalid Username or Password");
+                //    return View(user);
+                //}
+                return View();
             }
             else
             {
@@ -54,34 +55,34 @@ namespace TexasPetroleum.Controllers
         [HttpPost]
         public ActionResult Register(RegistrationVM user)
         {
-            if(ModelState.IsValid)
-            {
-                using (var context = new QuoteContext())
-                {
-                    //check database for existing username
-                    if (context.Clients.Any(x => x.Username == user.Username))
-                    {
-                        ModelState.AddModelError(string.Empty, "Username already exists");
-                        return View(user);
-                    }
-                    else
-                    {
-                        var newClient = new Client();
+            //if(ModelState.IsValid)
+            //{
+            //    using (var context = new QuoteContext())
+            //    {
+            //        //check database for existing username
+            //        if (context.Clients.Any(x => x.Username == user.Username))
+            //        {
+            //            ModelState.AddModelError(string.Empty, "Username already exists");
+            //            return View(user);
+            //        }
+            //        else
+            //        {
+            //            var newClient = new Client();
 
-                        newClient.Username = user.Username;
-                        newClient.Password = user.Password;
-                        newClient.Address = new Address();
-                        newClient.Address.Id = newClient.Id;
+            //            newClient.Username = user.Username;
+            //            newClient.Password = user.Password;
+            //            newClient.Address = new Address();
+            //            newClient.Address.Id = newClient.Id;
                         
-                        context.Addresses.Add(newClient.Address);   
-                        context.Clients.Add(newClient);
+            //            context.Addresses.Add(newClient.Address);   
+            //            context.Clients.Add(newClient);
 
-                        context.SaveChanges();
+            //            context.SaveChanges();
 
-                        return Redirect("/Account/Login");
-                    }
-                }
-            }
+            //            return Redirect("/Account/Login");
+            //        }
+            //    }
+            //}
 
             //Redirect to Login Page if model state valid
             return View();
