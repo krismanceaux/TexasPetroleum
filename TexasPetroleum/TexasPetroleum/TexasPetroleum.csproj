@@ -70,6 +70,8 @@
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -140,6 +142,21 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="AuthData\AuthAttribute.cs" />
+    <Compile Include="Migrations\201904040512116_Init.cs" />
+    <Compile Include="Migrations\201904040512116_Init.Designer.cs">
+      <DependentUpon>201904040512116_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904040545486_MadeClientAttributesNullable.cs" />
+    <Compile Include="Migrations\201904040545486_MadeClientAttributesNullable.Designer.cs">
+      <DependentUpon>201904040545486_MadeClientAttributesNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904040606220_TypoDeliveryDate.cs" />
+    <Compile Include="Migrations\201904040606220_TypoDeliveryDate.Designer.cs">
+      <DependentUpon>201904040606220_TypoDeliveryDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\ClientLogin.cs" />
     <Compile Include="Constants\QuoteConstants.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -149,30 +166,10 @@
     <Compile Include="DAL\QuoteInitializer.cs" />
     <Compile Include="Enums\DisplayEnums.cs" />
     <Compile Include="Enums\PricingEnums.cs" />
+    <Compile Include="Models\FuelQuote.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903240105510_init.cs" />
-    <Compile Include="Migrations\201903240105510_init.Designer.cs">
-      <DependentUpon>201903240105510_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903240750167_ChangeFuelQuoteDateDataType.cs" />
-    <Compile Include="Migrations\201903240750167_ChangeFuelQuoteDateDataType.Designer.cs">
-      <DependentUpon>201903240750167_ChangeFuelQuoteDateDataType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903242058484_CreatePricePerGallonColumnInFuelQuotesTable.cs" />
-    <Compile Include="Migrations\201903242058484_CreatePricePerGallonColumnInFuelQuotesTable.Designer.cs">
-      <DependentUpon>201903242058484_CreatePricePerGallonColumnInFuelQuotesTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903242215065_RemovePricePerGallon.cs" />
-    <Compile Include="Migrations\201903242215065_RemovePricePerGallon.Designer.cs">
-      <DependentUpon>201903242215065_RemovePricePerGallon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Address.cs" />
-    <Compile Include="Models\Client.cs" />
-    <Compile Include="Models\FuelQuote.cs" />
-    <Compile Include="Models\Pricing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DAL\QuoteContext.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
@@ -290,17 +287,14 @@
     <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903240105510_init.resx">
-      <DependentUpon>201903240105510_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904040512116_Init.resx">
+      <DependentUpon>201904040512116_Init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903240750167_ChangeFuelQuoteDateDataType.resx">
-      <DependentUpon>201903240750167_ChangeFuelQuoteDateDataType.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904040545486_MadeClientAttributesNullable.resx">
+      <DependentUpon>201904040545486_MadeClientAttributesNullable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903242058484_CreatePricePerGallonColumnInFuelQuotesTable.resx">
-      <DependentUpon>201903242058484_CreatePricePerGallonColumnInFuelQuotesTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903242215065_RemovePricePerGallon.resx">
-      <DependentUpon>201903242215065_RemovePricePerGallon.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904040606220_TypoDeliveryDate.resx">
+      <DependentUpon>201904040606220_TypoDeliveryDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

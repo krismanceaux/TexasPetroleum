@@ -22,9 +22,9 @@ namespace TexasPetroleum.Controllers
             if (ModelState.IsValid)
             {
                 var context = new QuoteContext();
-                var client = context.Clients.First();
+                var client = context.ClientLogins.First();
 
-                if (context.Clients.Any(x => x.Username == user.Username && x.Password == user.Password))
+                if (context.ClientLogins.Any(x => x.Username == user.Username && x.Password == user.Password))
                 {
                     // Redirect to UserHub
                     ApplicationSession.Username = user.Username;
@@ -36,6 +36,7 @@ namespace TexasPetroleum.Controllers
                     ModelState.AddModelError(string.Empty, "Invalid Username or Password");
                     return View(user);
                 }
+                
             }
             else
             {
@@ -54,28 +55,28 @@ namespace TexasPetroleum.Controllers
         [HttpPost]
         public ActionResult Register(RegistrationVM user)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 using (var context = new QuoteContext())
                 {
                     //check database for existing username
-                    if (context.Clients.Any(x => x.Username == user.Username))
+                    if (context.ClientLogins.Any(x => x.Username == user.Username))
                     {
                         ModelState.AddModelError(string.Empty, "Username already exists");
                         return View(user);
                     }
                     else
                     {
+                        var newLogin = new ClientLogin();
+                        newLogin.Username = user.Username;
+                        newLogin.Password = user.Password;
+
                         var newClient = new Client();
+                        newClient.ClientLogin = newLogin;
 
-                        newClient.Username = user.Username;
-                        newClient.Password = user.Password;
-                        newClient.Address = new Address();
-                        newClient.Address.Id = newClient.Id;
-                        
-                        context.Addresses.Add(newClient.Address);   
+
                         context.Clients.Add(newClient);
-
+                        context.ClientLogins.Add(newLogin);
                         context.SaveChanges();
 
                         return Redirect("/Account/Login");
