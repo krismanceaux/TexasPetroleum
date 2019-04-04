@@ -30,11 +30,6 @@ namespace TexasPetroleum.Controllers
                 var login = context.ClientLogins.Single(x => x.Username == ApplicationSession.Username);
                 var client = context.Clients.Single(x => x.LoginId == login.Id);
 
-
-                //var client = context.Clients.Include(c => c.Address).Single(x => x.Username.Contains(ApplicationSession.Username));
-                //var address = client.Address == null ? new Address() : client.Address;
-
-
                 ProfileVM vm = new ProfileVM()
                 {
                     Name = client.Name,
@@ -60,9 +55,6 @@ namespace TexasPetroleum.Controllers
                 var login = context.ClientLogins.Single(x => x.Username == ApplicationSession.Username);
                 var client = context.Clients.Single(x => x.LoginId == login.Id);
 
-                //var client = context.Clients.Single(x => x.Username == ApplicationSession.Username);
-                //var address = context.Addresses.Single(x => x.Id == client.Id);
-
                 client.Name = model.Name;
                 client.AddressLine1 = model.AddressLine1;
                 client.AddressLine2 = model.AddressLine2;
@@ -70,7 +62,6 @@ namespace TexasPetroleum.Controllers
                 client.State = model.StateOption.ToString();
                 client.ZipCode = model.Zipcode;
 
-                //client.Address = address;
                 context.SaveChanges();
 
                 return Redirect("/Home/UserHub");
