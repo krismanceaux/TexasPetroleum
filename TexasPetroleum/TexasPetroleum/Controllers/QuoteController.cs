@@ -28,18 +28,20 @@ namespace FuelRatePredictor.Controllers
         {
             if (ApplicationSession.Username != "" && ApplicationSession.Username != null)
             {
-                //var context = new QuoteContext();
+                var context = new QuoteContext();
+                var login = context.ClientLogins.Single(x => x.Username == ApplicationSession.Username);
+                var client = context.Clients.Single(x => x.LoginId == login.Id);
+
                 //var client = context.Clients.Include(c => c.Address).Single(x => x.Username.Contains(ApplicationSession.Username));
 
-                //var quote = new QuoteVM();
-                //quote.AddressLine1 = client.Address.AddressLine1 == null ? "" : client.Address.AddressLine1;
-                //quote.AddressLine2 = client.Address.AddressLine2 == null ? "" : client.Address.AddressLine2;
-                //quote.City = client.Address.City == null ? "" : client.Address.City;
-                //quote.State = client.Address.State == null ? "" : client.Address.State;
-                //quote.Zipcode = client.Address.Zipcode == null ? "" : client.Address.Zipcode;
+                var quote = new QuoteVM();
+                quote.AddressLine1 = client.AddressLine1 == null ? "" : client.AddressLine1;
+                quote.AddressLine2 = client.AddressLine2 == null ? "" : client.AddressLine2;
+                quote.City = client.City == null ? "" : client.City;
+                quote.State = client.State == null ? "" : client.State;
+                quote.Zipcode = client.ZipCode == null ? "" : client.ZipCode;
 
-                // return View(quote);
-                return View();
+                return View(quote);
             }
             else
             {
@@ -55,20 +57,22 @@ namespace FuelRatePredictor.Controllers
         {
             if (ModelState.IsValid)
             {
-                //var context = new QuoteContext();
-                //var client = context.Clients.Include(c => c.Address).Single(x => x.Username.Contains(ApplicationSession.Username));
-                //var address = client.Address;
+                var context = new QuoteContext();
+                var login = context.ClientLogins.Single(x => x.Username == ApplicationSession.Username);
+                var client = context.Clients.Single(x => x.LoginId == login.Id);
 
-                //FuelQuote fuelQuote = new FuelQuote();
 
-                //fuelQuote.DeliveryDate = quote.DeliveryDate;
-                //fuelQuote.GallonsRequested = quote.GallonsRequested;
-                //fuelQuote.TimeCreated = DateTime.Now;
-                //fuelQuote.DeliveryAddress = address;
 
-                //client.FuelQuotes.Add(fuelQuote);
-                //context.FuelQuotes.Add(fuelQuote);
-                //context.SaveChanges();
+                FuelQuote fuelQuote = new FuelQuote();
+
+                fuelQuote.DeliveryDate = quote.DeliveryDate;
+                fuelQuote.GallonsRequested = quote.GallonsRequested;
+                fuelQuote.Client = client;
+                //fuelQuote.DeliveryAddress = client.address;
+
+                client.FuelQuotes.Add(fuelQuote);
+                context.FuelQuotes.Add(fuelQuote);
+                context.SaveChanges();
 
                 return Redirect("/Home/UserHub");
             }
@@ -84,32 +88,34 @@ namespace FuelRatePredictor.Controllers
             if (ApplicationSession.Username != "" && ApplicationSession.Username != null)
             {
                 var context = new QuoteContext();
+                var login = context.ClientLogins.Single(x => x.Username == ApplicationSession.Username);
+                var client = context.Clients.Single(x => x.LoginId == login.Id);
+
 
                 //var client = context.Clients.Include(x => x.FuelQuotes).Include(x => x.Address).Single(x => x.Username == ApplicationSession.Username);
-                //List<FuelQuote> fuelQuotes = client.FuelQuotes.ToList();
-                //List<QuoteVM> history = new List<QuoteVM>();
+                List<FuelQuote> fuelQuotes = client.FuelQuotes.ToList();
+                List<QuoteVM> history = new List<QuoteVM>();
 
-                //foreach (var quote in fuelQuotes)
-                //{
+                foreach (var quote in fuelQuotes)
+                {
 
-                //    var vm = new QuoteVM
-                //    {
+                    var vm = new QuoteVM
+                    {
                         //Added a few checks for null while debugging, but may not be necessary in final version
-                        //AddressLine1 = quote.DeliveryAddress == null ? "" : quote.DeliveryAddress.AddressLine1,
-                        //AddressLine2 = quote.DeliveryAddress == null ? "" : quote.DeliveryAddress.AddressLine2,
-                        //City = quote.DeliveryAddress == null ? "" : quote.DeliveryAddress.City,
-                        //State = quote.DeliveryAddress == null ? "" : quote.DeliveryAddress.State,
-                        //Zipcode = quote.DeliveryAddress == null ? "" : quote.DeliveryAddress.Zipcode,
-                        //DeliveryDate = quote.DeliveryDate,
-                        //GallonsRequested = quote.GallonsRequested,
-                        //SuggestedPrice = quote.SuggestedPrice
-                    //};
+                        AddressLine1 = quote.Client == null ? "" : quote.Client.AddressLine1,
+                        AddressLine2 = quote.Client == null ? "" : quote.Client.AddressLine2,
+                        City = quote.Client == null ? "" : quote.Client.City,
+                        State = quote.Client == null ? "" : quote.Client.State,
+                        Zipcode = quote.Client == null ? "" : quote.Client.ZipCode,
+                        DeliveryDate = quote.DeliveryDate,
+                        GallonsRequested = quote.GallonsRequested,
+                        SuggestedPrice = quote.SuggestedPrice
+                    };
 
-                    //history.Add(vm);
-                //}
+                history.Add(vm);
+            }
 
-                // return View(history);
-                return View();
+            return View(history);
             }
             return View();
         }

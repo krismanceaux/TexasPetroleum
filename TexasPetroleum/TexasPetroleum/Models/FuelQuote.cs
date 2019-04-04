@@ -12,7 +12,7 @@ namespace TexasPetroleum
         public int Id { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime DevliveryDate { get; set; }
+        public DateTime DeliveryDate { get; set; }
 
         public double SuggestedPrice { get; set; }
 
