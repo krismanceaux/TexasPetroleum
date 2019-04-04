@@ -107,7 +107,7 @@ namespace FuelRatePredictor.Controllers
                         City = quote.Client == null ? "" : quote.Client.City,
                         State = quote.Client == null ? "" : quote.Client.State,
                         Zipcode = quote.Client == null ? "" : quote.Client.ZipCode,
-                        DeliveryDate = quote.DeliveryDate,
+                        DeliveryDate = quote.DeliveryDate.Date,
                         GallonsRequested = quote.GallonsRequested,
                         SuggestedPrice = quote.SuggestedPrice
                     };

@@ -11,6 +11,7 @@ namespace TexasPetroleum
     {
         public int Id { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         [Column(TypeName = "date")]
         public DateTime DeliveryDate { get; set; }
 
