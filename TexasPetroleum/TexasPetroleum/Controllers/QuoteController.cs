@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using TexasPetroleum;
 using TexasPetroleum.ViewModels;
 using static TexasPetroleum.Enums.DisplayEnums;
+using static TexasPetroleum.Enums.PricingEnums;
 using System.Data.Entity;
 using TexasPetroleum.AuthData;
 
@@ -111,11 +112,42 @@ namespace FuelRatePredictor.Controllers
             return View();
         }
 
-        public double CalculateQuotePrice()
+        [HttpPost]
+        public ActionResult Edit(double GallonsRequested, StateOptions State)
+        {
+            var user = new QuoteVM();
+            user.SuggestedPrice = CalculateQuotePrice(GallonsRequested, State);
+            user.TotalPrice = GallonsRequested * user.SuggestedPrice;
+            return Json(user, JsonRequestBehavior.AllowGet);
+        }
+
+        public double CalculateQuotePrice(double gallons, StateOptions state)
         {
             //Placeholder for Pricing Module calculations
+            double pricePerGal = 1.50, marginPrice, profitFactor = 0.10, locationFactor, rateHistory, gallonFactor, rateFluct, sugPrice;
+            string sMonth = DateTime.Now.ToString("MM"); //for current month to see which season we are in
+            
+            if (state == StateOptions.TX)
+                locationFactor = 0.02;
+            else
+                locationFactor = 0.04;
 
-            return 0.00;
+            //need to figure out how to get rateHistory 
+
+            if (gallons > 1000)
+                gallonFactor = 0.02;
+            else
+                gallonFactor = 0.03;
+
+            if (Enum.GetName(typeof(Seasons), sMonth) == "Summer")
+                rateFluct = 0.04;
+            else
+                rateFluct = 0.03;
+
+            marginPrice = pricePerGal * (locationFactor + gallonFactor + profitFactor + rateFluct); //need to add rateHistory
+            sugPrice = pricePerGal + marginPrice;
+
+            return sugPrice;
         }
 
       
