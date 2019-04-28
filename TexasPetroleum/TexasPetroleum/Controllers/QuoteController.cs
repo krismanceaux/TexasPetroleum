@@ -113,7 +113,7 @@ namespace FuelRatePredictor.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(double GallonsRequested, StateOptions State)
+        public ActionResult GetPrice(double GallonsRequested, StateOptions State)
         {
             var user = new QuoteVM();
             user.SuggestedPrice = CalculateQuotePrice(GallonsRequested, State);
@@ -126,7 +126,8 @@ namespace FuelRatePredictor.Controllers
             //Placeholder for Pricing Module calculations
             double pricePerGal = 1.50, marginPrice, profitFactor = 0.10, locationFactor, rateHistory, gallonFactor, rateFluct, sugPrice;
             string sMonth = DateTime.Now.ToString("MM"); //for current month to see which season we are in
-            
+            Int32.TryParse(sMonth, out int month);
+
             if (state == StateOptions.TX)
                 locationFactor = 0.02;
             else
@@ -139,7 +140,7 @@ namespace FuelRatePredictor.Controllers
             else
                 gallonFactor = 0.03;
 
-            if (Enum.GetName(typeof(Seasons), sMonth) == "Summer")
+            if (Enum.GetName(typeof(Seasons), month) == "Summer")
                 rateFluct = 0.04;
             else
                 rateFluct = 0.03;

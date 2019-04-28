@@ -101,24 +101,27 @@
 </div>
 }
 
-<script>
-    $(document).ready(function() {
-        $("#button").click(function() {
-            var gallons = $('#GallonsRequested').val();
-            var state = $('#State').val();
+@section scripts
+    {
+        <script>
+            $(document).ready(function() {
+                $("#button").click(function() {
+                    var gallons = $('#GallonsRequested').val();
+                    var state = $('#State').val();
 
-            $.ajax({
-                type: "POST",
-                url: "/Quote/Edit",
-                data: { GallonsRequested: gallons, State: state },
-                contentType: "application/json",
-                dataType: "json",
+                    $.ajax({
+                        type: "POST",
+                        url: "/Quote/GetPrice",
+                        data: JSON.stringify({ GallonsRequested: gallons, State: state }),
+                        contentType: "application/json",
+                        dataType: "json",
 
-                success: function (result) {
-                    $("#SugPrice").html(result.SuggestedPrice);
-                    $("#TotPrice").html(result.TotalPrice);
-                }
+                        success: function (result) {
+                            $("#SugPrice").val(result.SuggestedPrice);
+                            $("#TotPrice").val(result.TotalPrice);
+                        }
+                    });
+                });
             });
-        });
-    });
-</script>
+        </script>
+    }
