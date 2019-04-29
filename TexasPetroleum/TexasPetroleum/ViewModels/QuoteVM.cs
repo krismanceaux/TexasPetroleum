@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using static TexasPetroleum.Enums.DisplayEnums;
@@ -11,6 +12,8 @@ namespace TexasPetroleum.ViewModels
     {
         [Display(Name="Delivery Date")]
         [Required(ErrorMessage = "Delivery date is required")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [Column(TypeName = "date")]
         public DateTime DeliveryDate { get; set; }
 
         [Display(Name ="Address Line 1")]
