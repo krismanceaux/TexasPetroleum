@@ -100,44 +100,55 @@
 
 
 @section scripts
-        {
+{
     <script>
-
         
-
-
         var gallonState = 0;
         var gs2;
+        var deliveryDate;
+        var deliveryDateState;
+
+        // Checks input state to make sure that we can allow the user to click the buttons
+        function checkInputState() {
+           
+            if ($('#datePicker').val() != '' && ($('#GallonsRequested').val() > 0 && $('#GallonsRequested').val().length != 0)) {
+                $('#getPriceButton').attr("disabled", false);
+            }
+            else {
+                $('#getPriceButton').attr("disabled", true);
+            }
+
+            gs2 = parseInt($('#GallonsRequested').val());
+          
+            if (gallonState != gs2 || deliveryDateState != deliveryDate) {
+                $('#SaveButton').attr("disabled", true);
+            }
+            else {
+                console.log($('#datePicker').val());
+            }
+        }
+
+        // handles all triggers to update the DOM
         $(document).ready(function () {
-            
-            $("input").keyup(function (event) { // bind function called when key is pressed
-                console.log($('#GallonsRequested').val());
 
-                if ($('#datePicker').val() != '' && ($('#GallonsRequested').val() > 0 && $('#GallonsRequested').val().length != 0)) {
-                    $('#getPriceButton').attr("disabled", false);
-
-                }
-                else {
-                    $('#getPriceButton').attr("disabled", true);
-                }
-
-                gs2 = parseInt($('#GallonsRequested').val());
-                if (gallonState != gs2) {
-                    $('#SaveButton').attr("disabled", true);
-
-                }
-                else {
-                    console.log(typeof ($('#GallonsRequested').val()));
-                }
-
+            // triggers to validate input to enable Get Price button 
+            $("input").keyup(function (event) {
+                checkInputState();
             });
 
+            $('#datePicker').click(function () {
+                deliveryDate = $('#datePicker').val();
+                checkInputState();
+            });
+
+            // Enables Save button on click and updates DOM with proper input text
             $("#getPriceButton").click(function () {
                 
                 var gallons = $('#GallonsRequested').val();
                 var state = $('#State').val();
                 gallonState = gallons;
-
+                
+                deliveryDateState = deliveryDate;
                 $('#SaveButton').attr("disabled", false);
                 $.ajax({
                     type: "POST",
@@ -153,8 +164,6 @@
                 });
             });
         });
-
-
 
     </script>
 }
