@@ -111,11 +111,42 @@ namespace FuelRatePredictor.Controllers
             return View();
         }
 
-        public double CalculateQuotePrice()
+        public double CalculateQuotePrice(double gallons, StateOptions state)
         {
+            var context = new QuoteContext();
+            var login = context.ClientLogins.Single(x => x.Username == ApplicationSession.Username);
+            var client = context.Clients.Single(x => x.LoginId == login.Id);
             //Placeholder for Pricing Module calculations
+            double pricePerGal = 1.50, marginPrice, profitFactor = 0.10, locationFactor, rateHistory, gallonFactor, rateFluct, sugPrice;
+            string sMonth = DateTime.Now.ToString("MM"); //for current month to see which season we are in
+            Int32.TryParse(sMonth, out int month);
+            int QuoteCount = context.FuelQuotes.Count(x => x.ClientId == client.Id);
 
-            return 0.00;
+            if (state == StateOptions.TX)
+                locationFactor = 0.02;
+            else
+                locationFactor = 0.04;
+
+            if (QuoteCount > 0)
+                rateHistory = 0.01;
+            else
+                rateHistory = 0.00;
+
+
+            if (gallons > 1000)
+                gallonFactor = 0.02;
+            else
+                gallonFactor = 0.03;
+
+            if (Enum.GetName(typeof(Seasons), month) == "Summer")
+                rateFluct = 0.04;
+            else
+                rateFluct = 0.03;
+
+            marginPrice = pricePerGal * (locationFactor - rateHistory + gallonFactor + profitFactor + rateFluct); //need to add rateHistory
+            sugPrice = pricePerGal + marginPrice;
+
+            return sugPrice;
         }
 
       
