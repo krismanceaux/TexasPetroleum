@@ -10,6 +10,7 @@ using TexasPetroleum.ViewModels;
 using static TexasPetroleum.Enums.DisplayEnums;
 using System.Data.Entity;
 using TexasPetroleum.AuthData;
+using static TexasPetroleum.Enums.PricingEnums;
 
 namespace FuelRatePredictor.Controllers
 {
@@ -63,6 +64,8 @@ namespace FuelRatePredictor.Controllers
                 fuelQuote.DeliveryDate = quote.DeliveryDate;
                 fuelQuote.GallonsRequested = quote.GallonsRequested;
                 fuelQuote.Client = client;
+                fuelQuote.TotalPrice = quote.TotalPrice;
+                fuelQuote.SuggestedPrice = quote.SuggestedPrice;
 
                 client.FuelQuotes.Add(fuelQuote);
                 context.FuelQuotes.Add(fuelQuote);
@@ -100,7 +103,8 @@ namespace FuelRatePredictor.Controllers
                         Zipcode = quote.Client == null ? "" : quote.Client.ZipCode,
                         DeliveryDate = quote.DeliveryDate.Date,
                         GallonsRequested = quote.GallonsRequested,
-                        SuggestedPrice = quote.SuggestedPrice
+                        SuggestedPrice = quote.SuggestedPrice,
+                        TotalPrice = quote.TotalPrice
                     };
 
                     history.Add(vm);
@@ -149,7 +153,23 @@ namespace FuelRatePredictor.Controllers
             return sugPrice;
         }
 
-      
+        [HttpPost]
+        public ActionResult GetPrice(double GallonsRequested, StateOptions State)
+        {
+            var context = new QuoteContext();
+            var login = context.ClientLogins.Single(x => x.Username == ApplicationSession.Username);
+            var client = context.Clients.Single(x => x.LoginId == login.Id);
+            var user = new QuoteVM();
+            user.AddressLine1 = client.AddressLine1;
+            user.AddressLine2 = client.AddressLine2;
+            user.City = client.City;
+            user.State = client.State;
+            user.Zipcode = client.ZipCode;
+            user.SuggestedPrice = CalculateQuotePrice(GallonsRequested, State);
+            user.TotalPrice = GallonsRequested * user.SuggestedPrice;
+            return Json(user, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult SubmitSuccess()
         {
             return View();

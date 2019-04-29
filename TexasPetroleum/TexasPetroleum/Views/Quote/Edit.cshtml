@@ -9,84 +9,114 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.AddressLine1, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.AddressLine1, new { @readonly = "readonly", @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.AddressLine1, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.AddressLine2, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.AddressLine2, new { @readonly = "readonly", @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.AddressLine2, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.AddressLine1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.AddressLine1, new { @readonly = "readonly", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AddressLine1, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.City, new { @readonly = "readonly", @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.AddressLine2, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.AddressLine2, new { @readonly = "readonly", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AddressLine2, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.State, new { @readonly = "readonly", @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.City, new { @readonly = "readonly", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Zipcode, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.Zipcode, new { @readonly = "readonly", @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Zipcode, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.State, new { @readonly = "readonly", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.DeliveryDate, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.DeliveryDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
-            @Html.ValidationMessageFor(model => model.DeliveryDate, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Zipcode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Zipcode, new { @readonly = "readonly", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Zipcode, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.SuggestedPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.SuggestedPrice, new { @readonly = "readonly", @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.SuggestedPrice, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.DeliveryDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DeliveryDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                @Html.ValidationMessageFor(model => model.DeliveryDate, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.GallonsRequested, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.GallonsRequested, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.GallonsRequested, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.SuggestedPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.SuggestedPrice, new { id = "SugPrice", @readonly = "readonly", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SuggestedPrice, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.TotalPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.TotalPrice, new { @readonly = "readonly", @class = "form-control" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.GallonsRequested, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.GallonsRequested, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GallonsRequested, "", new { @class = "text-danger" })
+            </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.TotalPrice, new { id = "TotPrice", @readonly = "readonly", @class = "form-control" })
+            </div>
+        </div>
+        @using (Html.BeginForm("Edit", "Quote", FormMethod.Post))
+        {
+            <button>Save</button>
+        }
     </div>
-    @using (Html.BeginForm("Edit", "Quote", FormMethod.Post))
-    {
-        <button>Save</button>
-    }
-</div>
 }
 
+<div id="button">
+        <div class="col-md-10">
+            <button type="button" class="btn btn-light">Get Price</button>
+        </div>
+    </div>
+
+@section scripts
+        {
+        <script>
+            $(document).ready(function () {
+                $("#button").click(function () {
+                    var gallons = $('#GallonsRequested').val();
+                    var state = $('#State').val();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/Quote/GetPrice",
+                        data: JSON.stringify({ GallonsRequested: gallons, State: state }),
+                        contentType: "application/json",
+                        dataType: "json",
+
+                        success: function (result) {
+                            $("#SugPrice").val(result.SuggestedPrice);
+                            $("#TotPrice").val(result.TotalPrice);
+                        }
+                    });
+                });
+            });
+        </script>
+    }

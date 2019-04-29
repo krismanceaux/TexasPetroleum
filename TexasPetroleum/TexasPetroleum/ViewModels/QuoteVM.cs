@@ -45,10 +45,12 @@ namespace TexasPetroleum.ViewModels
         [Required]
         public double TotalPrice
         {
-            get
-            {
-                return Math.Round(SuggestedPrice * GallonsRequested, 2);
-            }
+            get;
+            set;
+            //get
+            //{
+            //    return Math.Round(SuggestedPrice * GallonsRequested, 2);
+            //}
         }
 
         [Display(Name = "Address")]
