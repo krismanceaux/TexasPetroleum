@@ -56,7 +56,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DeliveryDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DeliveryDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                @Html.EditorFor(model => model.DeliveryDate, new { htmlAttributes = new { @class = "form-control", type = "date", id="datePicker" } })
                 @Html.ValidationMessageFor(model => model.DeliveryDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -72,7 +72,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.GallonsRequested, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.GallonsRequested, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.GallonsRequested, new { htmlAttributes = new { @class = "form-control"} })
                 @Html.ValidationMessageFor(model => model.GallonsRequested, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -85,38 +85,60 @@
         </div>
         @using (Html.BeginForm("Edit", "Quote", FormMethod.Post))
         {
-            <button>Save</button>
+            <button id="SaveButton" disabled>Save</button>
         }
     </div>
 }
 
 <div id="button">
-        <div class="col-md-10">
-            <button type="button" class="btn btn-light">Get Price</button>
-        </div>
+    <div class="col-md-10">
+        <button id="getPriceButton" type="button" class="btn btn-light" disabled>Get Price</button>
     </div>
+</div>
 
 @section scripts
         {
-        <script>
-            $(document).ready(function () {
-                $("#button").click(function () {
-                    var gallons = $('#GallonsRequested').val();
-                    var state = $('#State').val();
+    <script>
 
-                    $.ajax({
-                        type: "POST",
-                        url: "/Quote/GetPrice",
-                        data: JSON.stringify({ GallonsRequested: gallons, State: state }),
-                        contentType: "application/json",
-                        dataType: "json",
+        
 
-                        success: function (result) {
-                            $("#SugPrice").val(result.SuggestedPrice);
-                            $("#TotPrice").val(result.TotalPrice);
-                        }
-                    });
+
+
+        $(document).ready(function () {
+
+
+
+            $("input").keyup(function (event) { // bind function called when key is pressed
+                console.log($('#GallonsRequested').val());
+                if ($('#datePicker').val() != '' && ($('#GallonsRequested').val() > 0 && $('#GallonsRequested').val().length != 0)) {
+                    $('#getPriceButton').attr("disabled", false);
+                }
+                else {
+                    $('#getPriceButton').attr("disabled", true);
+                }
+            });
+
+            $("#button").click(function () {
+                var gallons = $('#GallonsRequested').val();
+                var state = $('#State').val();
+
+                $('#SaveButton').attr("disabled", false);
+                $.ajax({
+                    type: "POST",
+                    url: "/Quote/GetPrice",
+                    data: JSON.stringify({ GallonsRequested: gallons, State: state }),
+                    contentType: "application/json",
+                    dataType: "json",
+
+                    success: function (result) {
+                        $("#SugPrice").val(result.SuggestedPrice);
+                        $("#TotPrice").val(result.TotalPrice);
+                    }
                 });
             });
-        </script>
-    }
+        });
+
+
+
+    </script>
+}
