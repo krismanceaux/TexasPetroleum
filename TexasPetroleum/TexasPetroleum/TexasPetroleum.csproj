@@ -155,6 +155,14 @@
     <Compile Include="Migrations\201904040606220_TypoDeliveryDate.Designer.cs">
       <DependentUpon>201904040606220_TypoDeliveryDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904290727017_AddColumnstoFuelQuote.cs" />
+    <Compile Include="Migrations\201904290727017_AddColumnstoFuelQuote.Designer.cs">
+      <DependentUpon>201904290727017_AddColumnstoFuelQuote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904290745451_DropColumnstoFuelQuote.cs" />
+    <Compile Include="Migrations\201904290745451_DropColumnstoFuelQuote.Designer.cs">
+      <DependentUpon>201904290745451_DropColumnstoFuelQuote.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ClientLogin.cs" />
@@ -218,6 +226,7 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="Properties\PublishProfiles\TexasPetroleum - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -296,6 +305,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904040606220_TypoDeliveryDate.resx">
       <DependentUpon>201904040606220_TypoDeliveryDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904290727017_AddColumnstoFuelQuote.resx">
+      <DependentUpon>201904290727017_AddColumnstoFuelQuote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904290745451_DropColumnstoFuelQuote.resx">
+      <DependentUpon>201904290745451_DropColumnstoFuelQuote.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

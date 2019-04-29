@@ -58,7 +58,7 @@ namespace FuelRatePredictor.Controllers
                 var context = new QuoteContext();
                 var login = context.ClientLogins.Single(x => x.Username == ApplicationSession.Username);
                 var client = context.Clients.Single(x => x.LoginId == login.Id);
-
+     
                 FuelQuote fuelQuote = new FuelQuote();
 
                 fuelQuote.DeliveryDate = quote.DeliveryDate;
@@ -66,6 +66,7 @@ namespace FuelRatePredictor.Controllers
                 fuelQuote.Client = client;
                 fuelQuote.TotalPrice = quote.TotalPrice;
                 fuelQuote.SuggestedPrice = quote.SuggestedPrice;
+               
 
                 client.FuelQuotes.Add(fuelQuote);
                 context.FuelQuotes.Add(fuelQuote);
