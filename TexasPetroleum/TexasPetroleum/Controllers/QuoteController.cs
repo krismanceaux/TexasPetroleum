@@ -165,8 +165,8 @@ namespace FuelRatePredictor.Controllers
             user.City = client.City;
             user.State = client.State;
             user.Zipcode = client.ZipCode;
-            user.SuggestedPrice = CalculateQuotePrice(GallonsRequested, State);
-            user.TotalPrice = GallonsRequested * user.SuggestedPrice;
+            user.SuggestedPrice = Math.Round(CalculateQuotePrice(GallonsRequested, State), 2);
+            user.TotalPrice = Math.Round(GallonsRequested * user.SuggestedPrice, 2);
             return Json(user, JsonRequestBehavior.AllowGet);
         }
 
