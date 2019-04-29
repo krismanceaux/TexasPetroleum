@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using TexasPetroleum.AuthData;
 using System.Linq;
 using System.Web;
 using static TexasPetroleum.Enums.DisplayEnums;
@@ -14,6 +15,7 @@ namespace TexasPetroleum.ViewModels
         [Required(ErrorMessage = "Delivery date is required")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         [Column(TypeName = "date")]
+        [DateRange(ErrorMessage = "Date must be today or greater")]
         public DateTime DeliveryDate { get; set; }
 
         [Display(Name ="Address Line 1")]
