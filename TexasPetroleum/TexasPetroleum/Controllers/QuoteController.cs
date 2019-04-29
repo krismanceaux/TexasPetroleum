@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using TexasPetroleum;
 using TexasPetroleum.ViewModels;
 using static TexasPetroleum.Enums.DisplayEnums;
+using static TexasPetroleum.Enums.PricingEnums;
 using System.Data.Entity;
 using TexasPetroleum.AuthData;
 using static TexasPetroleum.Enums.PricingEnums;
@@ -115,6 +116,8 @@ namespace FuelRatePredictor.Controllers
             return View();
         }
 
+
+
         public double CalculateQuotePrice(double gallons, StateOptions state)
         {
             var context = new QuoteContext();
@@ -124,6 +127,7 @@ namespace FuelRatePredictor.Controllers
             double pricePerGal = 1.50, marginPrice, profitFactor = 0.10, locationFactor, rateHistory, gallonFactor, rateFluct, sugPrice;
             string sMonth = DateTime.Now.ToString("MM"); //for current month to see which season we are in
             Int32.TryParse(sMonth, out int month);
+
             int QuoteCount = context.FuelQuotes.Count(x => x.ClientId == client.Id);
 
             if (state == StateOptions.TX)
@@ -168,6 +172,7 @@ namespace FuelRatePredictor.Controllers
             user.SuggestedPrice = CalculateQuotePrice(GallonsRequested, State);
             user.TotalPrice = GallonsRequested * user.SuggestedPrice;
             return Json(user, JsonRequestBehavior.AllowGet);
+
         }
 
         public ActionResult SubmitSuccess()

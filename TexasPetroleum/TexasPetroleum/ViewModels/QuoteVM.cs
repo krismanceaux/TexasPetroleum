@@ -43,6 +43,7 @@ namespace TexasPetroleum.ViewModels
 
         [Display(Name = "Total Price")]
         [Required]
+
         public double TotalPrice
         {
             get;
@@ -52,6 +53,7 @@ namespace TexasPetroleum.ViewModels
             //    return Math.Round(SuggestedPrice * GallonsRequested, 2);
             //}
         }
+
 
         [Display(Name = "Address")]
         public string AddressString
